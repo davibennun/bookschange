@@ -130,10 +130,13 @@ $app_name = idx($app_info, 'name', '');
           xfbml      : true // parse XFBML
         });
 
-        FB.api('/me', function(response) {
+        $(function(){
+          FB.api('/me', function(response) {
             //alert("Name: "+ response.name + "\nFirst name: "+ response.first_name + "ID: "+response.id);
             console.log(response);
+          });  
         });
+        
 
         // Listen to the auth.login which will be called when the user logs in
         // using the Login button
