@@ -130,12 +130,14 @@ $app_name = idx($app_info, 'name', '');
           xfbml      : true // parse XFBML
         });
 
-        $(function(){
+        var app_init = function(){
+
           FB.api('/me', function(response) {
             //alert("Name: "+ response.name + "\nFirst name: "+ response.first_name + "ID: "+response.id);
             console.log(response);
           });  
-        });
+
+        };
         
 
         // Listen to the auth.login which will be called when the user logs in
@@ -150,6 +152,16 @@ $app_name = idx($app_info, 'name', '');
         });
 
         FB.Canvas.setAutoGrow();
+
+        FB.getLoginStatus(function(response) {
+        if (response.authResponse) {
+          app_init();
+        } else {
+          console.log("unLOGADO");
+        }
+      });
+
+
       };
 
       // Load the SDK Asynchronously
