@@ -133,11 +133,36 @@ $app_name = idx($app_info, 'name', '');
         var app_init = function(){
 
           FB.api('/me', function(response) {
-            //alert("Name: "+ response.name + "\nFirst name: "+ response.first_name + "ID: "+response.id);
-            console.log(response);
+            
           });  
 
+          $("#donation_submit").submit(function(e){
+              $.post("/backend/items/",formatFormData($(this).serializeArray()),function(data){
+                  console.log("submited");
+              }).error(function(){console.log("unsubmited")});
+          });
+
+          $("#donation_submit").submit(function(e){
+              $.post("/backend/items/",formatFormData($(this).serializeArray()),function(data){
+                  console.log("submited");
+              }).error(function(){console.log("unsubmited")});
+          });
+
+          $('#page7').live( 'pageinit', function(){
+            console.log("page7");
+          });
+
         };
+
+        function formatFormData(data){
+          var formatedData = {};
+
+          for(var key in data){
+            formatedData[data[key]["name"]] = data[key]["value"]; 
+          }
+
+          return formatedData;
+        }
         
 
         // Listen to the auth.login which will be called when the user logs in
@@ -477,11 +502,11 @@ $app_name = idx($app_info, 'name', '');
                       <legend>
                           Type
                       </legend>
-                      <input id="radio1" name="type" value="radio1" type="radio">
+                      <input id="radio1" name="type" value="book" type="radio">
                       <label for="radio1">
                           Book
                       </label>
-                      <input id="radio2" name="type" value="radio2" type="radio">
+                      <input id="radio2" name="type" value="magazine" type="radio">
                       <label for="radio2">
                           Magazine
                       </label>
@@ -500,15 +525,7 @@ $app_name = idx($app_info, 'name', '');
                       <label for="textinput4">
                           ISBN
                       </label>
-                      <input name="" id="textinput4" placeholder="" value="" type="text">
-                  </fieldset>
-              </div>
-              <div data-role="fieldcontain">
-                  <fieldset data-role="controlgroup">
-                      <label for="textinput5">
-                          Your city and state(wont be displayable)
-                      </label>
-                      <input name="" id="textinput5" placeholder="city, state" value="" type="text">
+                      <input name="isbn" id="textinput4" placeholder="" value="" type="text">
                   </fieldset>
               </div>
               <div data-role="fieldcontain">
@@ -516,7 +533,7 @@ $app_name = idx($app_info, 'name', '');
                       <label for="textarea1">
                           Description
                       </label>
-                      <textarea name="" id="textarea1" placeholder=""></textarea>
+                      <textarea name="description" id="textarea1" placeholder=""></textarea>
                   </fieldset>
               </div>
               <input id="donation_submit" type="submit" value="Submit">
