@@ -13,7 +13,7 @@
 
 // Provides access to app specific values such as your app id and app secret.
 // Defined in 'AppInfo.php'
-
+if(getenv("APP_STAGE") == "production"){
 require_once('../AppInfo.php');
 
 // Enforce https on production
@@ -81,6 +81,10 @@ if ($user_id) {
 $app_info = $facebook->api('/'. AppInfo::appID());
 
 $app_name = idx($app_info, 'name', '');
+
+}else{
+  $basic = array();
+}
 
 ?><!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
