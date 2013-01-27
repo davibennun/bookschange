@@ -8,7 +8,6 @@ require 'MongoWrapper.class.php';
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-$test = new Mongo();
 
 $mongo = new \MongoWrapper\MongoWrapper(getenv("MONGOHQURL"));
 
