@@ -834,6 +834,6 @@ $app_name = idx($app_info, 'name', '');
 
     <?php } ?>
 
-    <<script type="text/javascript" src="javascript/mustache.js"></script>
+    <<script type="text/javascript" src="js/mustache.js"></script>
 </body>
 </html>
