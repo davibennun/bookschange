@@ -87,8 +87,8 @@ $app->get('/items/search/:query', function($query) use($app, $mongo){
 $app->post('/items/',  function() use($app, $mongo){
 	$request = $app->request();
 
-	$item = json_decode($request->getBody());
-
+	(object) $item = json_decode($request->getBody());
+	
 	$mongo->setCollection("items");
 
 	$mongo->insert($item);

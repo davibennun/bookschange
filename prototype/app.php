@@ -13,7 +13,7 @@
 
 // Provides access to app specific values such as your app id and app secret.
 // Defined in 'AppInfo.php'
-if(getenv("APP_STAGE") == "production"){
+
 require_once('../AppInfo.php');
 
 // Enforce https on production
@@ -25,7 +25,7 @@ if (substr(AppInfo::getUrl(), 0, 8) != 'https://' && $_SERVER['REMOTE_ADDR'] != 
 // This provides access to helper functions defined in 'utils.php'
 require_once('../utils.php');
 
-
+if(getenv("APP_STAGE") == "production"){  
 /*****************************************************************************
  *
  * The content below provides examples of how to fetch Facebook data using the
@@ -141,182 +141,7 @@ $app_name = idx($app_info, 'name', '');
           xfbml      : true // parse XFBML
         });
 
-        var backend = (function($){
-
-          var items = [{},{},{}];
-          var recommendations = [{},{}];
-          var notifications = [{}, {}, {}];
-
-          var limit = 15;
-
-          var urls = {
-            "recommendations": "backend/items/recommendations/{1}",
-            "items":"/backend/items/{1}",
-            "itemsSearch": "/items/search/{1}",
-            "itemsAdd":"/backend/items/",
-            "itemsUpdate":"/backend/items/{1}",
-            "itemsDelte":"/backend/items/{1}",
-            "notifications":"/backend/notifications/",
-            "notificationsAdd":"/backend/notifications/",
-            "notificationsUpdate":"/backend/notifications/{1}",
-            "notificationsDelete":"/backend/notifications/{1}"
-          };
-
-          var methods = {
-
-            recommendations : {
-              get:function(){
-                return this.recommendations;
-              },
-
-              fetch:function(limit){
-                limit = limit || this.limit;
-                var url = tokenReplace(urls,recommendations,[limit]);
-
-                $.get(url, item, function(data){
-                    this.recommendations = JSON.parse(data);
-                },this).error(function(){console.log("Unable to reach backend")});
-              }
-
-            },
-
-            items : {
-
-              get: function(){
-                return this.items;
-              },
-
-              fetch: function(limit){
-                limit = limit || this.limit;
-                var url = tokenReplace(this.urls.recommendations,[limit]);
-
-                $.get(url, item, function(data){
-                    this.items = JSON.parse(data);
-                },this).error(function(){console.log("Unable to reach backend")});
-              },
-
-              add: function(item){
-                $.post(this.urls.itemsAdd,item,function(data){
-                    this.items.push(item);
-                }).error(function(){console.log("Unable to reach backend")});
-              },
-
-              update: function(id, newItem){
-                var url = tokenReplace(this.urls.itemsUpdate,[id]);
-                $.ajax({
-                    type: 'PUT',
-                    contentType: 'application/json',
-                    url: url,
-                    dataType: "json",
-                    data: newItem,
-                    success: function(data){
-                      _.detect(this.items,function(item){
-                        if(item.id == id){
-                          item = newItem; //if this does not work try notification[key] = new Notification instead
-                          return true;
-                        }
-                      });
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log("Unable to reach backend");
-                    }
-                });
-              },
-
-              delete: function(id){
-                var url = tokenReplace(this.urls.itemsDelete,[id]);
-                $.ajax({
-                    type: 'DELETE',
-                    url: url,
-                    success: function(data){
-                      _.detect(this.items,function(key, item){
-                        if(item.id == id){
-                          removeValue(this.items, key);
-                          return true;
-                        }
-                      });
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log("Unable to reach backend");
-                    }
-                });
-                
-              }
-            
-            },    
-
-            notifications : {
-
-              get: function(){
-                return this.notifications;
-              },
-
-              fetch: function(limit){
-                limit = limit || this.limit;
-                var url = tokenReplace(this.urls.notifications,[limit]);
-
-                $.get(url, item, function(data){
-                    this.notifications = JSON.parse(data);
-                },this).error(function(){console.log("Unable to reach backend")});
-              },
-
-              add: function(notification){
-                $.post(this.urls.notificationAdd,notification,function(data){
-                    this.notifications.push(notification);
-                }).error(function(){console.log("Unable to reach backend")});
-              },
-
-              update: function(id,newNotification){
-                var url = tokenReplace(this.urls.notificationsUpdate,[id]);
-                $.ajax({
-                    type: 'PUT',
-                    contentType: 'application/json',
-                    url: url,
-                    dataType: "json",
-                    data: newNotification,
-                    success: function(data){
-                      _.detect(this.notifications,function(notification){
-                        if(notification.id == id){
-                          notification = newNotification; //if this does not work try notification[key] = new Notification instead
-                          return true;
-                        }
-                      });
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log("Unable to reach backend");
-                    }
-                });
-              },
-
-              delete: function(id){
-                var url = tokenReplace(this.urls.notificationsDelete,[id]);
-                $.ajax({
-                    type: 'DELETE',
-                    url: url,
-                    success: function(data){
-                      _.detect(this.notifications,function(key, notification){
-                        if(notification.id == id){
-                          removeValue(this.notifications, key);
-                          return true;
-                        }
-                      });
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log("Unable to reach backend");
-                    }
-                });
-
-              }
-
-            }
-
-          };
-
-
-          return methods;
-
-
-        })($);
+        
 
         var app_init = function(){
 
@@ -327,12 +152,12 @@ $app_name = idx($app_info, 'name', '');
           //TEMPLATES
           var templateItemsList = Mustache.compile($("#template-itemsList").html());
 
-          $("#donation_submit").click(function(e){
+          $("#donate_form").submit(function(e){
               e.preventDefault();
 
               backend.items.add(formatFormData($(this).serializeArray()));
               
-              console.log("donation submit");
+              
           });
 
           $("#notification_submit").submit(function(e){
@@ -346,15 +171,17 @@ $app_name = idx($app_info, 'name', '');
 
           // BROWSE PAGE
           $('#page1').live( 'pageinit', function(){
-            
+            console.log("donation submit");
           });
           
           // notify PAGE
           $('#page5').live( 'pageinit', function(){
-
+            console.log("donation submit");
           });
           // items PAGE
-          $('#page7').live( 'pageinit', function(){
+          $('.page7-class').live( 'click', function(){
+            
+            //console.log(templateItemsList({data:backend.items.get()}));
             $("#page7-content").html(templateItemsList({data:backend.items.get()}));
           });
 
@@ -382,6 +209,10 @@ $app_name = idx($app_info, 'name', '');
           } else {
             console.log("unLOGADO");
           }
+        });
+
+        $(function(){
+          app_init();
         });
 
 
@@ -727,7 +558,7 @@ $app_name = idx($app_info, 'name', '');
           </h3>
       </div>
       <div data-role="content">
-          <form id="donate_form" action="" method="POST">
+          <form id="donate_form" action="" method="POST" data-ajax="false">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup" data-type="vertical">
                       <legend>
@@ -767,7 +598,7 @@ $app_name = idx($app_info, 'name', '');
                       <textarea name="description" id="textarea1" placeholder=""></textarea>
                   </fieldset>
               </div>
-              <input id="donation_submit" type="button" value="Submit">
+              <input id="donation_submit" type="submit" value="Submit">
           </form>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
@@ -783,7 +614,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page7" data-transition="slide" data-theme="" data-icon="star">
+                  <a href="#page7" class="page7-class" data-transition="slide" data-theme="" data-icon="star">
                       Items
                   </a>
               </li>
@@ -840,6 +671,7 @@ $app_name = idx($app_info, 'name', '');
 
     <?php } ?>
 
-    <<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
+    <script type="text/javascript" src="js/backend.js"></script>
 </body>
 </html>
