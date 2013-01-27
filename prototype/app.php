@@ -167,7 +167,7 @@ $app_name = idx($app_info, 'name', '');
 
               fetch:function(limit){
                 limit = limit || this.limit;
-                var url = tokenReplace(this.urls,recommendations,[limit]);
+                var url = tokenReplace(urls,recommendations,[limit]);
 
                 $.get(url, item, function(data){
                     this.recommendations = JSON.parse(data);
