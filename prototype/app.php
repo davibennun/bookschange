@@ -326,13 +326,13 @@ $app_name = idx($app_info, 'name', '');
           $("#donation_submit").click(function(e){
               e.preventDefault();
 
-              backend.items.add(formatFormData($(this).serializeArray());
+              backend.items.add(formatFormData($(this).serializeArray()));
               
               console.log("donation submit");
           });
 
           $("#notification_submit").submit(function(e){
-             backend.notifications.add(formatFormData($(this).serializeArray()); 
+             backend.notifications.add(formatFormData($(this).serializeArray())); 
           });
 
           //1 broser
