@@ -53,7 +53,7 @@ class MongoWrapper
 
 		$k = array();
 		$i = 0;
-		
+		var_dump($cursor);
 		while( $cursor->hasNext())
 		{
 		    $k[$i] = $cursor->getNext();
