@@ -109,14 +109,21 @@ $app_name = idx($app_info, 'name', '');
     
   </style>
 
-  <!-- User-generated js -->
-  <script>
-
-    $(function() {
-        console.log("test");
-    });
-
+  <script type="text/html" id="template-itemsList">
+    <ul data-role="listview" data-divider-theme="b" data-inset="true">
+        <li data-role="list-divider" role="heading">
+            My items
+        </li>
+        {{#data}}
+        <li data-theme="c">
+          <a href="#page2" data-transition="slide">
+            {{title}}
+          </a>
+        </li>
+        {{/data}}
+    </ul>
   </script>
+
 </head>
 <body>
   <div id="fb-root"></div>
@@ -130,26 +137,218 @@ $app_name = idx($app_info, 'name', '');
           xfbml      : true // parse XFBML
         });
 
+        var backend = (function($){
+
+          var items = [{},{},{}];
+          var recommendations = [{},{}];
+          var notifications = [{}, {}, {}];
+
+          var limit = 15;
+
+          var urls = {
+            "recommendations": "/items/recommendations/{1}",
+            "items":"/backend/items/{1}",
+            "itemsSearch": "/items/search/{1}",
+            "itemsAdd":"/backend/items/",
+            "itemsUpdate":"/backend/items/{1}",
+            "itemsDelte":"/backend/items/{1}",
+            "notifications":"/backend/notifications/",
+            "notificationsAdd":"/backend/notifications/",
+            "notificationsUpdate":"/backend/notifications/{1}",
+            "notificationsDelete":"/backend/notifications/{1}"
+          };
+
+          var methods = {
+
+            recommendations : {
+              get:function(){
+                return this.recommendations;
+              },
+
+              fetch:function(limit){
+                limit = limit || this.limit;
+                var url = tokenReplace(this.urls,recommendations,[limit]);
+
+                $.get(url, item, function(data){
+                    this.recommendations = JSON.parse(data);
+                },this).error(function(){console.log("Unable to reach backend")});
+              }
+
+            },
+
+            items : {
+
+              get: function(){
+                return this.items;
+              },
+
+              fetch: function(limit){
+                limit = limit || this.limit;
+                var url = tokenReplace(this.urls.recommendations,[limit]);
+
+                $.get(url, item, function(data){
+                    this.items = JSON.parse(data);
+                },this).error(function(){console.log("Unable to reach backend")});
+              },
+
+              add: function(item){
+                $.post(this.urls.itemsAdd,item,function(data){
+                    this.items.push(item);
+                }).error(function(){console.log("Unable to reach backend")});
+              },
+
+              update: function(id, newItem){
+                var url = tokenReplace(this.urls.itemsUpdate,[id]);
+                $.ajax({
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    url: url,
+                    dataType: "json",
+                    data: newItem,
+                    success: function(data){
+                      _.detect(this.items,function(item){
+                        if(item.id == id){
+                          item = newItem; //if this does not work try notification[key] = new Notification instead
+                          return true;
+                        }
+                      };
+                    }),
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("Unable to reach backend");
+                    }
+                });
+              },
+
+              delete: function(id){
+                var url = tokenReplace(this.urls.itemsDelete,[id]);
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function(data){
+                      _.detect(this.items,function(key, item){
+                        if(item.id == id){
+                          removeValue(this.items, key);
+                          return true;
+                        }
+                      });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("Unable to reach backend");
+                    }
+                });
+                
+              }
+            
+            },    
+
+            notifications : {
+
+              get: function(){
+                return this.notifications;
+              },
+
+              fetch: function(limit){
+                limit = limit || this.limit;
+                var url = tokenReplace(this.urls.notifications,[limit]);
+
+                $.get(url, item, function(data){
+                    this.notifications = JSON.parse(data);
+                },this).error(function(){console.log("Unable to reach backend")});
+              },
+
+              add: function(notification){
+                $.post(this.urls.notificationAdd,notification,function(data){
+                    this.notifications.push(notification);
+                }).error(function(){console.log("Unable to reach backend")});
+              },
+
+              update: function(id,newNotification){
+                var url = tokenReplace(this.urls.notificationsUpdate,[id]);
+                $.ajax({
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    url: url,
+                    dataType: "json",
+                    data: newNotification,
+                    success: function(data){
+                      _.detect(this.notifications,function(notification){
+                        if(notification.id == id){
+                          notification = newNotification; //if this does not work try notification[key] = new Notification instead
+                          return true;
+                        }
+                      });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("Unable to reach backend");
+                    }
+                });
+              },
+
+              delete: function(id){
+                var url = tokenReplace(this.urls.notificationsDelete,[id]);
+                $.ajax({
+                    type: 'DELETE',
+                    url: url,
+                    success: function(data){
+                      _.detect(this.notifications,function(key, notification){
+                        if(notification.id == id){
+                          removeValue(this.notifications, key);
+                          return true;
+                        }
+                      });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("Unable to reach backend");
+                    }
+                });
+
+              }
+
+            }
+
+          };
+
+
+          return methods;
+
+
+        })($);
+
         var app_init = function(){
 
           FB.api('/me', function(response) {
             
           });  
 
-          $("#donation_submit").submit(function(e){
-              $.post("/backend/items/",formatFormData($(this).serializeArray()),function(data){
-                  console.log("submited");
-              }).error(function(){console.log("unsubmited")});
-          });
+          //TEMPLATES
+          var templateItemsList = Mustache.compile($("#template-itemsList").html());
 
           $("#donation_submit").submit(function(e){
-              $.post("/backend/items/",formatFormData($(this).serializeArray()),function(data){
-                  console.log("submited");
-              }).error(function(){console.log("unsubmited")});
+              backend.items.add(formatFormData$(this).serializeArray());
           });
 
+          $("#notification_submit").submit(function(e){
+             backend.notifications.add(formatFormData$(this).serializeArray()); 
+          });
+
+          //1 broser
+          //6 add
+          //7 items
+          //5 notify
+
+          // BROWSE PAGE
+          $('#page1').live( 'pageinit', function(){
+
+
+          });
+          
+          // notify PAGE
+          $('#page5').live( 'pageinit', function(){
+
+          });
+          // items PAGE
           $('#page7').live( 'pageinit', function(){
-            console.log("page7");
+            $("#page7-content").html(templateItemsList({data:backend.items.get()}));
           });
 
         };
@@ -162,6 +361,29 @@ $app_name = idx($app_info, 'name', '');
           }
 
           return formatedData;
+        }
+
+        function tokenReplace(string, tokens){  
+          for (var i = 0; i < tokens.length; i++) {
+              string.replace(new RegExp("{"+i+"}","g"),tokens[i]);
+          }
+          return string
+        }
+
+        function removeValue(arr, value) {
+            for(var i = 0; i < arr.length; i++) {
+                if(arr[1] === value) {
+                    return arr.splice(i, 1);
+                }
+            }
+        }
+
+        function updateElement(){
+
+        }
+
+        function deleteElement(){
+
         }
         
 
@@ -571,27 +793,8 @@ $app_name = idx($app_info, 'name', '');
               Books Change
           </h3>
       </div>
-      <div data-role="content">
-          <ul data-role="listview" data-divider-theme="b" data-inset="true">
-              <li data-role="list-divider" role="heading">
-                  My items
-              </li>
-              <li data-theme="c">
-                  <a href="#page2" data-transition="slide">
-                      Book 1
-                  </a>
-              </li>
-              <li data-theme="c">
-                  <a href="#page2" data-transition="slide">
-                      Book 2
-                  </a>
-              </li>
-              <li data-theme="c">
-                  <a href="#page2" data-transition="slide">
-                      Magazines 1
-                  </a>
-              </li>
-          </ul>
+      <div data-role="content" id="page7-content">
+          
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
