@@ -146,7 +146,7 @@ $app_name = idx($app_info, 'name', '');
           var limit = 15;
 
           var urls = {
-            "recommendations": "/items/recommendations/{1}",
+            "recommendations": "backend/items/recommendations/{1}",
             "items":"/backend/items/{1}",
             "itemsSearch": "/items/search/{1}",
             "itemsAdd":"/backend/items/",
@@ -717,7 +717,7 @@ $app_name = idx($app_info, 'name', '');
           </h3>
       </div>
       <div data-role="content">
-          <form id="donate_form" action="backend_api/" method="POST">
+          <form id="donate_form" action="" method="POST">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup" data-type="vertical">
                       <legend>
@@ -829,5 +829,7 @@ $app_name = idx($app_info, 'name', '');
       </div>
 
     <?php } ?>
+
+    <<script type="text/javascript" src="javascript/mustache.js"></script>
 </body>
 </html>
