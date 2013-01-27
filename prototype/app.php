@@ -834,6 +834,6 @@ $app_name = idx($app_info, 'name', '');
 
     <?php } ?>
 
-    <<script type="text/javascript" src="js/mustache.js"></script>
+    <<script type="text/javascript" src="/cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
 </body>
 </html>
