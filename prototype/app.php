@@ -316,14 +316,14 @@ $app_name = idx($app_info, 'name', '');
 
         var app_init = function(){
 
-          FB.api('/me', function(response) {
+          // FB.api('/me', function(response) {
             
-          });  
+          // });  
 
           //TEMPLATES
           var templateItemsList = Mustache.compile($("#template-itemsList").html());
 
-          $("#donate_form").submit(function(e){
+          $("#donation_submit").click(function(e){
               e.preventDefault();
 
               backend.items.add(formatFormData$(this).serializeArray());
@@ -356,7 +356,34 @@ $app_name = idx($app_info, 'name', '');
 
         };
 
-        function formatFormData(data){
+        
+        
+
+        // Listen to the auth.login which will be called when the user logs in
+        // using the Login button
+        FB.Event.subscribe('auth.login', function(response) {
+          // We want to reload the page now so PHP can read the cookie that the
+          // Javascript SDK sat. But we don't want to use
+          // window.location.reload() because if this is in a canvas there was a
+          // post made to this page and a reload will trigger a message to the
+          // user asking if they want to send data again.
+          window.location = window.location;
+        });
+
+        FB.Canvas.setAutoGrow();
+
+        FB.getLoginStatus(function(response) {
+          if (response.authResponse) {
+            app_init();
+          } else {
+            console.log("unLOGADO");
+          }
+        });
+
+
+      };
+
+      function formatFormData(data){
           var formatedData = {};
 
           for(var key in data){
@@ -388,31 +415,6 @@ $app_name = idx($app_info, 'name', '');
         function deleteElement(){
 
         }
-        
-
-        // Listen to the auth.login which will be called when the user logs in
-        // using the Login button
-        FB.Event.subscribe('auth.login', function(response) {
-          // We want to reload the page now so PHP can read the cookie that the
-          // Javascript SDK sat. But we don't want to use
-          // window.location.reload() because if this is in a canvas there was a
-          // post made to this page and a reload will trigger a message to the
-          // user asking if they want to send data again.
-          window.location = window.location;
-        });
-
-        FB.Canvas.setAutoGrow();
-
-        FB.getLoginStatus(function(response) {
-        if (response.authResponse) {
-          app_init();
-        } else {
-          console.log("unLOGADO");
-        }
-      });
-
-
-      };
 
       // Load the SDK Asynchronously
       (function(d, s, id) {
@@ -761,7 +763,7 @@ $app_name = idx($app_info, 'name', '');
                       <textarea name="description" id="textarea1" placeholder=""></textarea>
                   </fieldset>
               </div>
-              <input id="donation_submit" type="submit" value="Submit">
+              <input id="donation_submit" type="button" value="Submit">
           </form>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
