@@ -211,8 +211,8 @@ $app_name = idx($app_info, 'name', '');
                           item = newItem; //if this does not work try notification[key] = new Notification instead
                           return true;
                         }
-                      };
-                    }),
+                      });
+                    },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
                     }
@@ -338,8 +338,7 @@ $app_name = idx($app_info, 'name', '');
 
           // BROWSE PAGE
           $('#page1').live( 'pageinit', function(){
-
-
+            
           });
           
           // notify PAGE

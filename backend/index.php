@@ -102,7 +102,6 @@ $app->put('/items/:id', function($id) use($app, $mongo){
 	$mongo->setCollection("items");
 
 	$mongo->update(array("_id"=>new MongoId($id)), $item);
-	print_r($item);
 });
 
 $app->delete('/items/:id', function($id) use($app, $mongo){
