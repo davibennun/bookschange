@@ -323,7 +323,7 @@ $app_name = idx($app_info, 'name', '');
           //TEMPLATES
           var templateItemsList = Mustache.compile($("#template-itemsList").html());
 
-          $("#donation_submit").submit(function(e){
+          $("#donate_form").submit(function(e){
               e.preventDefault();
 
               backend.items.add(formatFormData$(this).serializeArray());
