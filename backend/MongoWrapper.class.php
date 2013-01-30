@@ -56,6 +56,7 @@ class MongoWrapper
 		while( $cursor->hasNext())
 		{
 		    $k[$i] = $cursor->getNext();
+		    $k[$i]["id"] = $k[$i]["_id"]->__toString();
 			$i++;
 		}
 

@@ -1,8 +1,8 @@
 var backend = (function($){
 
-          var items = [];
-          var recommendations = [];
-          var notifications = [];
+          var items = window.bookschange.items || [];
+          var recommendations = window.bookschange.recommendations || [];
+          var notifications = window.bookschange.notifications || [];
 
           var limit = 15;
 
@@ -19,7 +19,7 @@ var backend = (function($){
             "notificationsDelete":"http://localhost/bookschange/shielded-sierra-1174/backend/notifications/{1}"
           };
 
-          var methods = {
+          var collections = {
 
             recommendations : {
               get:function(){
@@ -39,8 +39,16 @@ var backend = (function($){
 
             items : {
 
-              get: function(){
-                return items;
+              get: function(id){
+                if(id){
+                  var result = _.select(items,function(item){
+                    return item.id == id; 
+                  });
+                  return result;
+                }else{
+                  return items;
+                }
+                
               },
 
               fetch: function(limit){
@@ -52,8 +60,33 @@ var backend = (function($){
                 },this).error(function(){console.log("Unable to reach backend")});
               },
 
-              add: function(item){
+              search:function(query){
+                query = query.toLocaleLowerCase();
+                var results = [];
+                for (var i in items){
+                  var item = items[i];
 
+                  if(item['title'].toLocaleLowerCase().indexOf(query) >= 0){
+                    results.push(item);
+                    break;
+                  }
+                    
+
+                  for(var j in item['genre']){
+                    var text = item['genre'][j].toLocaleLowerCase();
+                    if(text.indexOf(query) >= 0){
+                      results.push(item);
+                    }
+                  }
+                }
+
+                return results;
+
+
+              },
+
+              add: function(item){
+                item.fb_id = window.fb_id;
                 $.ajax({
                     type: 'POST',
                     contentType: 'application/json',
@@ -183,7 +216,7 @@ var backend = (function($){
           };
 
 
-          return methods;
+          return collections;
 
 
         })($);

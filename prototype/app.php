@@ -16,6 +16,9 @@
 
 require_once('../AppInfo.php');
 
+// Requires Mongo DB class wrapper
+require_once('../backend/MongoWrapper.class.php');
+
 // Enforce https on production
 if (substr(AppInfo::getUrl(), 0, 8) != 'https://' && $_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
 //  header('Location: https://'. $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
@@ -58,6 +61,18 @@ if ($user_id) {
     }
   }
 
+  
+
+  // $mongo->setCollection("users");
+  // $user_data = $mongo->get(array("uid"=>$basic["uid"]));
+
+  // if(empty($user_data)){
+  //   //register it on db
+  // }else{
+  //   //set it on session
+  // }
+
+
   // This fetches some things that you like . 'limit=*" only returns * values.
   // To see the format of the data you are retrieving, use the "Graph API
   // Explorer" which is at https://developers.facebook.com/tools/explorer/
@@ -83,8 +98,35 @@ $app_info = $facebook->api('/'. AppInfo::appID());
 $app_name = idx($app_info, 'name', '');
 
 }else{
+
   $basic = array();
+  $user_id = "123456";
+
+  
+  
+
 }
+
+
+//Fetch items
+  $mongo = new \MongoWrapper\MongoWrapper();
+  $mongo->setDatabase("bookschange");
+  $mongo->setCollection("items");
+  $items = $mongo->get(array("fb_id"=>$user_id),10);
+
+  //Fetch recommendations
+  $mongo->setCollection("usuarios");
+  $user = $mongo->get(array("fb_id"=>$user_id));
+  $user = $user[0];
+  $mongo->setCollection("items");
+
+  isset($user['genres']) ? $recommendations = $mongo->get(array("genre"=>array('$in'=>$user['genres'])),10) : $recommendations = array();
+
+  //Fetch notifications
+  //Fetch recommendations
+  $mongo->setCollection("notifications");
+  $notifications = $mongo->get(array("fb_id"=>$user_id));
+
 
 ?><!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
@@ -98,8 +140,13 @@ $app_name = idx($app_info, 'name', '');
   <link rel="stylesheet" href="my.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile.router.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+  <script type="text/javascript" src="js/jquery.textchange.js"></script>
+  <script type="text/javascript" src="js/pages.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
   <script src="my.js"></script>
-
+<?php if(getenv("APP_STAGE") == "production"){   ?>
   <meta property="og:title" content="<?php echo he($app_name); ?>" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<?php echo AppInfo::getUrl(); ?>" />
@@ -107,25 +154,52 @@ $app_name = idx($app_info, 'name', '');
   <meta property="og:site_name" content="<?php echo he($app_name); ?>" />
   <meta property="og:description" content="Books Change" />
   <meta property="fb:app_id" content="<?php echo AppInfo::appID(); ?>" />
+<?php }?>
+  <script type="text/javascript">
+    window.bookschange = {};
 
-  <!-- User-generated css -->
-  <style>
-    
-  </style>
+    window.bookschange.items = <?php echo json_encode($items); ?>;
+    window.bookschange.recommendations = <?php echo json_encode($recommendations); ?>;
+    window.bookschange.notifications = <?php echo json_encode($notifications); ?>;
+
+    window.fb_id = {};
+  </script>
 
   <script type="text/html" id="template-itemsList">
     <ul data-role="listview" data-divider-theme="b" data-inset="true">
-        <li data-role="list-divider" role="heading">
-            My items
-        </li>
         {{#data}}
         <li data-theme="c">
-          <a href="#page2" data-transition="slide">
+          <a href="#page2?item_id={{id}}" data-transition="slide">
             {{title}}
           </a>
         </li>
         {{/data}}
     </ul>
+  </script>
+
+  <script type="text/html" id="template-itemInfo"> 
+    <h2>
+        {{title}}
+      </h2>
+      
+      <div>
+          {{description}}
+      </div>
+      <div>
+          <a href="" data-transition="slide">
+              <a href="{{profile_link}}">Contact owner</a>
+          </a>
+      </div>
+  </script>
+
+  <script type="text/html" id="template-notificationsList">
+  <ul data-role="listview" data-divider-theme="b" data-inset="true">
+  {{#data}}
+      <li data-theme="c">
+            {{title}}
+        </li>
+  {{/data}}
+  </ul>
   </script>
 
 </head>
@@ -140,17 +214,66 @@ $app_name = idx($app_info, 'name', '');
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true // parse XFBML
         });
+      }
+      
+      
+      
 
-        
+      var templates = {
+        itemsList : Mustache.compile($("#template-itemsList").html()),
+        itemInfo: Mustache.compile($("#template-itemInfo").html()),
+        notificationsList : Mustache.compile($("#template-notificationsList").html())
+      }
 
         var app_init = function(){
 
+          //todo o controler tem que iniciar
+
+          var controller = new Controller("1");
           // FB.api('/me', function(response) {
             
           // });  
 
-          //TEMPLATES
-          var templateItemsList = Mustache.compile($("#template-itemsList").html());
+        
+        var timeout;
+        $('#search-input').bind('textchange', function () {
+          clearTimeout(timeout);
+            var self = this;
+            timeout = setTimeout(function () {
+              controller.go("8");
+
+          }, 1500);
+        });
+
+        $("#ui-input-clear").live("click",function(){
+          $("#search-input").val("");
+        });
+
+          // ------ROUTER
+          $(document).bind( "pagebeforechange", function( e, data ) {
+
+            
+            if ( typeof data.toPage === "string" ) {
+
+              //Parse url
+              var u = $.mobile.path.parseUrl( data.toPage );
+              
+              //get pageID
+              var page_id = u.hash.replace("#page","").replace(/\?(.*)/g,"");
+
+              //Dispach
+              controller.go(page_id,e,data);
+
+                            
+
+            }
+          });
+
+          if(window.location.hash.length<=0){
+            controller.go("1");
+          }
+
+          
 
           $("#donate_form").submit(function(e){
               e.preventDefault();
@@ -169,54 +292,49 @@ $app_name = idx($app_info, 'name', '');
           //7 items
           //5 notify
 
-          // BROWSE PAGE
-          $('#page1').live( 'pageinit', function(){
-            console.log("donation submit");
-          });
           
-          // notify PAGE
-          $('#page5').live( 'pageinit', function(){
-            console.log("donation submit");
-          });
-          // items PAGE
-          $('.page7-class').live( 'click', function(){
-            
-            //console.log(templateItemsList({data:backend.items.get()}));
-            $("#page7-content").html(templateItemsList({data:backend.items.get()}));
-          });
 
         };
 
         
         
 
-        // Listen to the auth.login which will be called when the user logs in
-        // using the Login button
+        
         FB.Event.subscribe('auth.login', function(response) {
           // We want to reload the page now so PHP can read the cookie that the
           // Javascript SDK sat. But we don't want to use
           // window.location.reload() because if this is in a canvas there was a
           // post made to this page and a reload will trigger a message to the
           // user asking if they want to send data again.
-          window.location = window.location;
+          //window.location = window.location;
+          window.location.reload();
         });
 
-        FB.Canvas.setAutoGrow();
+        // FB.Canvas.setAutoGrow();
 
-        FB.getLoginStatus(function(response) {
-          if (response.authResponse) {
-            app_init();
-          } else {
-            console.log("unLOGADO");
-          }
-        });
+        // FB.getLoginStatus(function(response) {
+        //   if (response.authResponse) {
+        //     app_init();
+        //   } else {
+        //     console.log("unLOGADO");
+        //   }
+        // });
+
+        
 
         $(function(){
+         
           app_init();
+
+          
+
         });
 
 
-      };
+
+
+
+     
 
       function formatFormData(data){
           var formatedData = {};
@@ -251,7 +369,7 @@ $app_name = idx($app_info, 'name', '');
 
         }
 
-      // Load the SDK Asynchronously
+      Load the SDK Asynchronously
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -275,38 +393,15 @@ $app_name = idx($app_info, 'name', '');
           <h3>
               Recomendations
           </h3>
-          <div class="ui-grid-b">
-              <div class="ui-block-a">
-              </div>
-              <div class="ui-block-b">
-              </div>
-              <div class="ui-block-c">
-              </div>
-              <div class="ui-block-a">
-              </div>
-              <div class="ui-block-b">
-              </div>
-              <div class="ui-block-c">
-              </div>
-              <div class="ui-block-a">
-              </div>
-              <div class="ui-block-b">
-              </div>
-              <div class="ui-block-c">
-              </div>
-              <div class="ui-block-a">
-              </div>
-              <div class="ui-block-b">
-              </div>
-              <div class="ui-block-c">
-              </div>
+          <div id="page1-content">
           </div>
+          <div id="page8-content"></div>
           <form action="">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
-                      <label for="search_input">
+                      <label for="search-input">
                       </label>
-                      <input name="" id="search_input" placeholder="Search by title or genre"
+                      <input name="" id="search-input" placeholder="Search by title or genre"
                       value="" type="search">
                   </fieldset>
               </div>
@@ -330,7 +425,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
@@ -340,6 +435,7 @@ $app_name = idx($app_info, 'name', '');
   <!-- details -->
   <div data-role="page" id="page2">
       <div data-theme="a" data-role="header">
+          <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
           <a id="item_edit" data-role="button" href="#page2" data-icon="gear" data-iconpos="left"
           class="ui-btn-right">
               -
@@ -351,59 +447,9 @@ $app_name = idx($app_info, 'name', '');
               Books Change
           </h3>
       </div>
-      <div data-role="content">
-          <h2>
-              Item title
-          </h2>
-          <div style="width: 288px; height: 100px; position: relative; background-color: #fbfbfb; border: 1px solid #b8b8b8;">
-              <img src="http://codiqa.com/static/images/v2/image.png" alt="image" style="position: absolute; top: 50%; left: 50%; margin-left: -16px; margin-top: -18px">
-          </div>
-          <div class="ui-grid-c">
-              <div class="ui-block-a">
-              </div>
-              <div class="ui-block-b">
-              </div>
-              <div class="ui-block-c">
-              </div>
-              <div class="ui-block-d">
-              </div>
-          </div>
-          <div>
-              <p>
-                  <b>
-                      Enter content here...
-                  </b>
-              </p>
-              <p>
-                  <b>
-                      <b>
-                          Enter content here...
-                      </b>
-                  </b>
-              </p>
-              <p>
-                  <b>
-                      <b>
-                          Enter content here...
-                      </b>
-                  </b>
-              </p>
-              <p>
-                  <b>
-                      <b>
-                          Enter content here...
-                      </b>
-                  </b>
-              </p>
-              <p>
-                  <br>
-              </p>
-          </div>
-          <div>
-              <a href="" data-transition="fade">
-                  Contact owner
-              </a>
-          </div>
+      <div data-role="content" id="item-info-content">
+          <!-- Book info -->
+
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -423,7 +469,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
@@ -485,7 +531,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
@@ -501,28 +547,14 @@ $app_name = idx($app_info, 'name', '');
       </div>
       <div data-role="content">
           <a id="notifications_add" data-role="button" data-inline="true" data-transition="slide"
-          href="#page5">
+          href="#page9">
               Add
           </a>
           <h3>
               Notifications
           </h3>
-          <div data-role="collapsible-set" data-content-theme="d">
-              <div data-role="collapsible" data-collapsed="false">
-                  <h3>
-                      Book 1
-                  </h3>
-              </div>
-              <div data-role="collapsible" data-collapsed="false">
-                  <h3>
-                      Book 2
-                  </h3>
-              </div>
-              <div data-role="collapsible" data-collapsed="false">
-                  <h3>
-                      Book 3
-                  </h3>
-              </div>
+          <div data-role="collapsible-set" data-content-theme="d" id="page5-content">
+              <!-- Info -->
           </div>
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
@@ -543,7 +575,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
@@ -585,9 +617,9 @@ $app_name = idx($app_info, 'name', '');
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
                       <label for="textinput4">
-                          ISBN
+                          Genre
                       </label>
-                      <input name="isbn" id="textinput4" placeholder="" value="" type="text">
+                      <input name="genre" id="textinput4" placeholder="" value="" type="text">
                   </fieldset>
               </div>
               <div data-role="fieldcontain">
@@ -619,7 +651,7 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
@@ -654,12 +686,84 @@ $app_name = idx($app_info, 'name', '');
                   </a>
               </li>
               <li>
-                  <a href="#page5" data-transition="fade" data-theme="" data-icon="refresh">
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
                       Notify
                   </a>
               </li>
           </ul>
       </div>
+  </div>
+
+  <div data-role="page" id="page9">
+     <div data-theme="a" data-role="header">
+          <h3>
+              Books Change
+          </h3>
+      </div>
+    <div data-role="content">
+     
+      <div data-role="content">
+          <form id="notification_form" action="" method="POST" data-ajax="false">
+              <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup" data-type="vertical">
+                      <legend>
+                          Type
+                      </legend>
+                      <input id="radio1" name="type" value="book" type="radio">
+                      <label for="radio1">
+                          Book
+                      </label>
+                      <input id="radio2" name="type" value="magazine" type="radio">
+                      <label for="radio2">
+                          Magazine
+                      </label>
+                  </fieldset>
+              </div>
+              <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup" data-mini="true">
+                      <label for="textinput3">
+                          Title
+                      </label>
+                      <input name="title" id="textinput3" placeholder="" value="" type="text">
+                  </fieldset>
+              </div>
+              <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup">
+                      <label for="textinput4">
+                          Genre
+                      </label>
+                      <input name="genre" id="textinput4" placeholder="" value="" type="text">
+                  </fieldset>
+              </div>
+              
+              <input id="notification_submit" type="submit" value="Submit">
+          </form>
+      </div>
+      <div data-role="tabbar" data-iconpos="top" data-theme="a">
+          <ul>
+              <li>
+                  <a href="#page1" data-transition="slide" data-theme="" data-icon="grid">
+                      Browse
+                  </a>
+              </li>
+              <li>
+                  <a href="#page6" data-transition="slide" data-theme="" data-icon="plus">
+                      Add
+                  </a>
+              </li>
+              <li>
+                  <a href="#page7" class="page7-class" data-transition="slide" data-theme="" data-icon="star">
+                      Items
+                  </a>
+              </li>
+              <li>
+                  <a href="#page5" data-transition="slide" data-theme="" data-icon="refresh">
+                      Notify
+                  </a>
+              </li>
+          </ul>
+      </div>
+    </div>
   </div>
 
    <?php } else { ?>
@@ -671,7 +775,7 @@ $app_name = idx($app_info, 'name', '');
 
     <?php } ?>
 
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
+    
     <script type="text/javascript" src="js/backend.js"></script>
 </body>
 </html>

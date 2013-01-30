@@ -2,12 +2,15 @@
 
 
 require 'Slim/Slim.php';
+require 'Slim/Middleware.php';
+require 'AuthMiddleware.class.php';
+
 require 'MongoWrapper.class.php';
 
 
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
-
+$app->add(new \AuthMiddleware());
 
 $mongo = new \MongoWrapper\MongoWrapper(getenv("MONGOHQURL"));
 
@@ -30,6 +33,7 @@ $app->post('/notifications/',  function() use($app, $mongo){
 	$request = $app->request();
 
 	$item = json_decode($request->getBody());
+	$item["fb_id"] = $app->fb_id;
 
 	$mongo->setCollection("notifications");
 
@@ -67,11 +71,15 @@ $app->get('/items/:limit', function($limit) use($app, $mongo){
 });
 
 $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
-	$mongo->setColection("items");
+	$mongo->setCollection("usuarios");
+	$user = $mongo->find(array("fb_id"=>$app->fb_id));
 
-	//todo get user liked genres
-	$genres = array("romance","fiction");
-	$crietria = array(array("genres"=>$genres));
+
+	
+	$mongo->setColection("items");
+	
+	//Get in genres collection what we have in user genres
+	$crietria = array("genre"=>array("$in"=>$user['genre']));
 
 	$result = $mongo->get($criteria ,$limit);
 });
@@ -87,17 +95,23 @@ $app->get('/items/search/:query', function($query) use($app, $mongo){
 $app->post('/items/',  function() use($app, $mongo){
 	$request = $app->request();
 
-	(object) $item = json_decode($request->getBody());
+	$item = json_decode($request->getBody());
 	
+	//customize item
+	$item->fb_id = $app->fb_id;
+	$item->genre = array($item->genre);
+
 	$mongo->setCollection("items");
 
 	$mongo->insert($item);
+
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){
 	$request = $app->request();
 
 	$item = json_decode($request->getBody());
+	$item->genre = array($item->genre);
 
 	$mongo->setCollection("items");
 
