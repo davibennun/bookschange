@@ -63,7 +63,7 @@ var backend = (function($){
               search:function(query){
                 query = query.toLocaleLowerCase();
                 var results = [];
-                var url = tokenReplace(urls.itemsSearch,[query]);                
+                var url = urls.itemsSearch.replace("{1}",query);
 
                 $.ajax({
                     type: 'GET',
