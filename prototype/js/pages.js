@@ -41,7 +41,7 @@ function Controller (page){
 			var result = backend.items.get(itemId)[0];
 
 			if(result.length == 0){
-				backend.items.
+				//backend.items.
 			}
 
 			$("#item-info-content").html(templates.itemInfo(result));
