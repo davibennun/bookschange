@@ -349,10 +349,11 @@ $app_name = idx($app_info, 'name', '');
         }
 
         function tokenReplace(string, tokens){  
-          for (var i = 0; i < tokens.length; i++) {
-              string.replace(new RegExp("\{"+(i+1)+"\}","g"),tokens[i]);
-          }
-          return string
+          // for (var i = 0; i < tokens.length; i++) {
+          //     string.replace(new RegExp("\{"+(i+1)+"\}","g"),tokens[i]);
+          // }
+          string.replace("{1}",tokens[0]); //desespero
+          return string;
         }
 
         function removeValue(arr, value) {
