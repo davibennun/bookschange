@@ -69,7 +69,7 @@ var backend = (function($){
                     type: 'GET',
                     url: url,
                     async:false,
-                    complete: function (xhr, status) { console.log(xhr.responseText); },
+                    complete: function (xhr, status) { this.results.push(JSON.parse(xhr.responseText)); },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
                     }
