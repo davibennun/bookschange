@@ -107,7 +107,8 @@ $app_name = idx($app_info, 'name', '');
 
 }
 
-
+print_r($user_id);
+exit;
 //Fetch items
   $mongo = new \MongoWrapper\MongoWrapper();
   $mongo->setDatabase("bookschange");
