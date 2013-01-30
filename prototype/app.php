@@ -143,6 +143,7 @@ $app_name = idx($app_info, 'name', '');
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <script type="text/javascript" src="js/jquery.mobile.router.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+  <script type="text/javascript" srcc="js/jquery.mobile.dynamic.popup.min.js"></script>
   <script type="text/javascript" src="js/jquery.textchange.js"></script>
   <script type="text/javascript" src="js/pages.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
