@@ -83,6 +83,8 @@ $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
 	$crietria = array("genre"=>array("$in"=>$user['genre']));
 
 	$result = $mongo->get($criteria ,$limit);
+
+	echo json_encode($result);
 });
 
 $app->get('/items/search/:query', function($search_query) use($app, $mongo){
@@ -91,6 +93,8 @@ $app->get('/items/search/:query', function($search_query) use($app, $mongo){
 	$criteria = array('$or'=>array(array("genre"=>new MongoRegex("/$search_query/i")),array("title"=>new MongoRegex("/$search_query/i"))));
 	var_dump($criteria);
 	$result = $mongo->get($criteria, 100);
+
+	echo json_encode($result);
 });
 
 $app->post('/items/',  function() use($app, $mongo){
