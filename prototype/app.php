@@ -162,7 +162,7 @@ $app_name = idx($app_info, 'name', '');
     window.bookschange.recommendations = <?php echo json_encode($recommendations); ?>;
     window.bookschange.notifications = <?php echo json_encode($notifications); ?>;
 
-    window.fb_id = {};
+    window.fb_id = "<?php echo $user_id; ?>";
   </script>
 
   <script type="text/html" id="template-itemsList">
