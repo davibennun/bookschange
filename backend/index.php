@@ -88,7 +88,7 @@ $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
 $app->get('/items/search/:query', function($search_query) use($app, $mongo){
 	$mongo->setCollection("items");
 	
-	$criteria = array('$or'=>array("genre"=>new MongoRegex("/$search_query/i"),"title"=>new MongoRegex("/$search_query/i")));
+	$criteria = array('$or'=>array(array("genre"=>new MongoRegex("/$search_query/i")),array("title"=>new MongoRegex("/$search_query/i"))));
 	var_dump($criteria);
 	$result = $mongo->get($criteria, 100);
 });
