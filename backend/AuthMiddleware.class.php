@@ -8,11 +8,11 @@ class AuthMiddleware extends \Slim\Middleware
         // Get reference to application
         $app = &$this->app;
         
-        $res = $app->response();
+        $req = $app->request();
         $data = json_encode($res->body());
         var_dump($data);
-        var_dump($res->body());
-        var_dump($res);
+        var_dump($req->post());
+        var_dump($req->get());
         exit;
         //process and get facebook id
         $app->fb_id = $data["fb_id"] || "123456";
