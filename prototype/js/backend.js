@@ -9,7 +9,7 @@ var backend = (function($){
           var urls = {
             "recommendations": "/backend/items/recommendations/{1}",
             "items":"/backend/items/{1}",
-            "itemsSearch": "/backend/items/search/{1}",
+            "itemsSearch": "http://shielded-sierra-1174.herokuapp.com/backend/items/search/{1}",
             "itemsAdd":"/backend/items/",
             "itemsUpdate":"/backend/items/{1}",
             "itemsDelte":"/backend/items/{1}",
