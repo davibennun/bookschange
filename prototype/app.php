@@ -224,7 +224,7 @@ $app_name = idx($app_info, 'name', '');
           //window.location = window.location;
           window.location.reload();
         });
-        
+
       }
       
       
@@ -247,13 +247,10 @@ $app_name = idx($app_info, 'name', '');
 
         
         var timeout;
-        $('#search-input').bind('textchange', function () {
-          clearTimeout(timeout);
-            var self = this;
-            timeout = setTimeout(function () {
+        $('#search-input').bind('keyup', function (e) {
+          if(e.which == 13) {
               controller.go("8");
-
-          }, 1500);
+          }
         });
 
         $("#ui-input-clear").live("click",function(){
