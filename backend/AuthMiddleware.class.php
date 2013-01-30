@@ -10,7 +10,7 @@ class AuthMiddleware extends \Slim\Middleware
         
         $req = $app->request();
         
-        
+        var_dump($_POST);
         var_dump($req->post());
         var_dump($req->get());
         exit;
