@@ -251,6 +251,8 @@ $app_name = idx($app_info, 'name', '');
           if(e.which == 13) {
               controller.go("8");
           }
+
+          e.preventDefault();
         });
 
         $("#ui-input-clear").live("click",function(){
