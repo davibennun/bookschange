@@ -72,9 +72,7 @@ var backend = (function($){
                     dataType: "json",
                     data: JSON.stringify(item),
                     async:false,
-                    success: function(data){
-                      results.push(item);
-                    },
+                    complete: function (xhr, status) { console.log(xhr.responseText); },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
                     }
