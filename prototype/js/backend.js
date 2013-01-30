@@ -67,10 +67,7 @@ var backend = (function($){
 
                 $.ajax({
                     type: 'GET',
-                    contentType: 'application/json',
                     url: url,
-                    dataType: "json",
-                    data: JSON.stringify(item),
                     async:false,
                     complete: function (xhr, status) { console.log(xhr.responseText); },
                     error: function(jqXHR, textStatus, errorThrown){
