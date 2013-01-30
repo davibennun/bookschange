@@ -30,7 +30,7 @@ var backend = (function($){
                   });
                   return result;
                 }else{
-                  return items;
+                  return recommendations;
                 }
                 
               },
