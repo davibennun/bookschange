@@ -770,6 +770,10 @@ $app_name = idx($app_info, 'name', '');
     </div>
   </div>
 
+  <div id="popup-success" data-role="popup" data-theme="e" data-overlay-theme="a" class="ui-content">
+    POPUP SUCCESS
+  </div>
+
    <?php } else { ?>
       
       <div>

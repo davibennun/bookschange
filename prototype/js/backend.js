@@ -112,6 +112,7 @@ var backend = (function($){
                     data: JSON.stringify(item),
                     success: function(data){
                       items.push(item);
+                      $( "#popup-success" ).popup( "open" );
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
