@@ -44,13 +44,20 @@ function Controller (page){
 			if(backend.items.get(itemId).length > 0){
 				var result = backend.items.get(itemId)[0];
 				$("#item-info-content").html(templates.itemInfo(result));
-			}else{
-				backend.items.fetch(itemId,function(result){
-					$("#item-info-content").html(templates.itemInfo(result));
-				});
 			}
 
-			
+			if(backend.recommendations.get(itemId).length > 0){
+				var result = backend.recommendations.get(itemId)[0];
+				$("#item-info-content").html(templates.itemInfo(result));
+			}
+
+
+			//SEARCH VIA BACKEND END POINT
+			// backend.items.fetch(itemId,function(result){
+			// 		$("#item-info-content").html(templates.itemInfo(result));
+			// });
+
+
 		},
 		"8":function(){
 			$("#page1-content").hide();

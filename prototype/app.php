@@ -113,6 +113,7 @@ $app_name = idx($app_info, 'name', '');
   $mongo->setDatabase("bookschange");
   $mongo->setCollection("items");
   $items = $mongo->get(array("fb_id"=>$user_id),10);
+  
 
   //Fetch recommendations
   $mongo->setCollection("usuarios");

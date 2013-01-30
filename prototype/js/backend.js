@@ -23,8 +23,16 @@ var backend = (function($){
 
 
             recommendations : {
-              get:function(){
-                return recommendations;
+              get: function(id){
+                if(id){
+                  var result = _.select(recommendations,function(item){
+                    return item.id == id; 
+                  });
+                  return result;
+                }else{
+                  return items;
+                }
+                
               },
 
               fetch:function(id,callback){
