@@ -349,7 +349,7 @@ $app_name = idx($app_info, 'name', '');
         }
 
         function tokenReplace(string, tokens){  
-          for (var i = 0; i < tokens.length; i++) {
+          for (var i = 1; i < tokens.length; i++) {
               string.replace(new RegExp("\{"+i+"\}","g"),tokens[i]);
           }
           return string
