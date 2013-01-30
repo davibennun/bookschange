@@ -51,12 +51,11 @@ var backend = (function($){
                 
               },
 
-              fetch: function(limit,id){
-                limit = limit || limit;
-                var url = tokenReplace(urls.recommendations,[limit]);
+              fetch: function(id, callback){
+                var url = urls.items.replace("{1}",[id]);
 
-                $.get(url, item, function(data){
-                    items = JSON.parse(data);
+                $.get(url, function(data){
+                    callback.apply(null, data);
                 },this).error(function(){console.log("Unable to reach backend")});
               },
 
