@@ -105,6 +105,7 @@ $app->post('/items/',  function() use($app, $mongo){
 
 	$mongo->insert($item);
 
+	
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){
