@@ -63,22 +63,38 @@ var backend = (function($){
               search:function(query){
                 query = query.toLocaleLowerCase();
                 var results = [];
-                for (var i in items){
-                  var item = items[i];
+                var url = tokenReplace(urls.itemsSearch,[query]);                
 
-                  if(item['title'].toLocaleLowerCase().indexOf(query) >= 0){
-                    results.push(item);
-                    break;
-                  }
+                $.ajax({
+                    type: 'GET',
+                    contentType: 'application/json',
+                    url: url,
+                    dataType: "json",
+                    data: JSON.stringify(item),
+                    success: function(data){
+                      results.push(item);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        console.log("Unable to reach backend");
+                    }
+                });
+
+                // for (var i in items){
+                //   var item = items[i];
+
+                //   if(item['title'].toLocaleLowerCase().indexOf(query) >= 0){
+                //     results.push(item);
+                //     break;
+                //   }
                     
 
-                  for(var j in item['genre']){
-                    var text = item['genre'][j].toLocaleLowerCase();
-                    if(text.indexOf(query) >= 0){
-                      results.push(item);
-                    }
-                  }
-                }
+                //   for(var j in item['genre']){
+                //     var text = item['genre'][j].toLocaleLowerCase();
+                //     if(text.indexOf(query) >= 0){
+                //       results.push(item);
+                //     }
+                //   }
+                // }
 
                 return results;
 
