@@ -5,7 +5,7 @@ function Controller (page){
 		"1" : function(){
 			$("#page8-content").hide();
 			$("#page1-content").show();
-			$("#page1-content").html(templates.itemsList({data:backend.recommendations.get()}));
+			$("#page1-content").html(templates.itemsList({data:backend.items.get()}));
 			//$("#page1").trigger("create");
 		},
 		"6":function(){
