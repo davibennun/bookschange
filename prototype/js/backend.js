@@ -7,16 +7,16 @@ var backend = (function($){
           var limit = 15;
 
           var urls = {
-            "recommendations": "http://localhost/bookschange/shielded-sierra-1174/backend/items/recommendations/{1}",
-            "items":"http://localhost/bookschange/shielded-sierra-1174/backend/items/{1}",
-            "itemsSearch": "http://localhost/bookschange/shielded-sierra-1174/items/search/{1}",
-            "itemsAdd":"http://localhost/bookschange/shielded-sierra-1174/backend/items/",
-            "itemsUpdate":"http://localhost/bookschange/shielded-sierra-1174/backend/items/{1}",
-            "itemsDelte":"http://localhost/bookschange/shielded-sierra-1174/backend/items/{1}",
-            "notifications":"http://localhost/bookschange/shielded-sierra-1174/backend/notifications/",
-            "notificationsAdd":"http://localhost/bookschange/shielded-sierra-1174/backend/notifications/",
-            "notificationsUpdate":"http://localhost/bookschange/shielded-sierra-1174/backend/notifications/{1}",
-            "notificationsDelete":"http://localhost/bookschange/shielded-sierra-1174/backend/notifications/{1}"
+            "recommendations": "backend/items/recommendations/{1}",
+            "items":"backend/items/{1}",
+            "itemsSearch": "items/search/{1}",
+            "itemsAdd":"backend/items/",
+            "itemsUpdate":"backend/items/{1}",
+            "itemsDelte":"backend/items/{1}",
+            "notifications":"backend/notifications/",
+            "notificationsAdd":"backend/notifications/",
+            "notificationsUpdate":"backend/notifications/{1}",
+            "notificationsDelete":"backend/notifications/{1}"
           };
 
           var collections = {
