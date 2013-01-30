@@ -18,14 +18,14 @@ function Controller (page){
 
 			$("#page7-content").html(templates.itemsList({data:backend.items.get()}));
 			//$('div[data-role="page"]').page();
-			$("#page7").trigger("create");
+			//$("#page7").trigger("create");
 			
 		},
 		"5":function(){
 			console.log("notify");
 			var template = templates.notificationsList({data:backend.notifications.get()});
 			$("#page5-content").html(template);
-			$("#page5").trigger("create");
+			//$("#page5").trigger("create");
 		},
 		"2":function(e,data){
 			console.log("details");
@@ -41,7 +41,7 @@ function Controller (page){
 			var result = backend.items.get(itemId)[0];
 
 			if(result.length == 0){
-				
+				backend.items.
 			}
 
 			$("#item-info-content").html(templates.itemInfo(result));
