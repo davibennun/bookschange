@@ -38,7 +38,13 @@ function Controller (page){
 			  return;
 			}
 
-			$("#item-info-content").html(templates.itemInfo(backend.items.get(itemId)[0]));
+			var result = backend.items.get(itemId)[0];
+
+			if(result.length == 0){
+				
+			}
+
+			$("#item-info-content").html(templates.itemInfo(result));
 		},
 		"8":function(){
 			$("#page1-content").hide();

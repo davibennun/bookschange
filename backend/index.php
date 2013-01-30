@@ -63,10 +63,10 @@ $app->delete('/notifications/:id', function($id) use($app, $mongo){
 });
 
 
-$app->get('/items/:limit', function($limit) use($app, $mongo){
+$app->get('/items/:id', function($id) use($app, $mongo){
 	$mongo->setCollection("items");
-
-	$result = $mongo->get(array(),$limit);
+	
+	$result = $mongo->get(array("_id"=>new MongoId($id)));
 
 	echo json_encode($result);
 });
@@ -103,9 +103,9 @@ $app->post('/items/',  function() use($app, $mongo){
 	
 	//customize item
 
-	$item->fb_id;
+	
 	$item->genre = array($item->genre);
-var_dump($item);
+
 	$mongo->setCollection("items");
 
 	$mongo->insert($item);

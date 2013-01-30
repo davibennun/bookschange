@@ -26,11 +26,10 @@ var backend = (function($){
                 return recommendations;
               },
 
-              fetch:function(limit){
-                limit = limit || limit;
-                var url = tokenReplace(urls,recommendations,[limit]);
+              fetch:function(id){
+                var url = urls.items.replace("{1}",id);
 
-                $.get(url, item, function(data){
+                $.get(url, function(data){
                     recommendations = JSON.parse(data);
                 },this).error(function(){console.log("Unable to reach backend")});
               }
@@ -51,7 +50,7 @@ var backend = (function($){
                 
               },
 
-              fetch: function(limit){
+              fetch: function(limit,id){
                 limit = limit || limit;
                 var url = tokenReplace(urls.recommendations,[limit]);
 

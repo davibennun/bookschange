@@ -48,8 +48,9 @@ class MongoWrapper
 	{
 		$cursor = $this->collection->find($f);
 
-		if($limit)
+		if($limit!=null){
 			$cursor->limit($limit);
+		}
 
 		$k = array();
 		$i = 0;
