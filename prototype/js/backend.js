@@ -7,16 +7,16 @@ var backend = (function($){
           var limit = 15;
 
           var urls = {
-            "recommendations": "backend/items/recommendations/{1}",
-            "items":"backend/items/{1}",
-            "itemsSearch": "items/search/{1}",
-            "itemsAdd":"backend/items/",
-            "itemsUpdate":"backend/items/{1}",
-            "itemsDelte":"backend/items/{1}",
-            "notifications":"backend/notifications/",
-            "notificationsAdd":"backend/notifications/",
-            "notificationsUpdate":"backend/notifications/{1}",
-            "notificationsDelete":"backend/notifications/{1}"
+            "recommendations": "/backend/items/recommendations/{1}",
+            "items":"/backend/items/{1}",
+            "itemsSearch": "/items/search/{1}",
+            "itemsAdd":"/backend/items/",
+            "itemsUpdate":"/backend/items/{1}",
+            "itemsDelte":"/backend/items/{1}",
+            "notifications":"/backend/notifications/",
+            "notificationsAdd":"/backend/notifications/",
+            "notificationsUpdate":"/backend/notifications/{1}",
+            "notificationsDelete":"/backend/notifications/{1}"
           };
 
           var collections = {
