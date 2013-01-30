@@ -38,13 +38,19 @@ function Controller (page){
 			  return;
 			}
 
-			var result = backend.items.get(itemId)[0];
+			
 
-			if(result.length == 0){
-				//backend.items.
+			//If result is local or we have to fetch
+			if(backend.items.get(itemId)){
+				var result = backend.items.get(itemId)[0];
+				$("#item-info-content").html(templates.itemInfo(result));
+			}else{
+				backend.items.fetch(itemId,function(result){
+					$("#item-info-content").html(templates.itemInfo(result));
+				});
 			}
 
-			$("#item-info-content").html(templates.itemInfo(result));
+			
 		},
 		"8":function(){
 			$("#page1-content").hide();

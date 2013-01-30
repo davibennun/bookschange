@@ -21,16 +21,17 @@ var backend = (function($){
 
           var collections = {
 
+
             recommendations : {
               get:function(){
                 return recommendations;
               },
 
-              fetch:function(id){
+              fetch:function(id,callback){
                 var url = urls.items.replace("{1}",id);
 
                 $.get(url, function(data){
-                    recommendations = JSON.parse(data);
+                    callback.apply(null, JSON.parse(data));
                 },this).error(function(){console.log("Unable to reach backend")});
               }
 
