@@ -102,7 +102,7 @@ $app->post('/items/',  function() use($app, $mongo){
 	$item = json_decode($request->getBody());
 	
 	//customize item
-	var_dump($app->fb_id);
+	
 	$item->fb_id = $app->fb_id;
 	$item->genre = array($item->genre);
 

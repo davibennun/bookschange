@@ -13,9 +13,8 @@ class AuthMiddleware extends \Slim\Middleware
 
         if(!empty($post)){
         	$keys = array_keys($post);
-print_r($post);
         	if(!empty($keys)){
-        		print_r($keys);
+        		
         		$data = json_decode($keys[0]);
 		        //process and get facebook id
 		        $app->fb_id = $data->fb_id || "123456";		
@@ -23,7 +22,7 @@ print_r($post);
 	        
         }
 
-        exit;
+        
 
         // Run inner middleware and application
         $this->next->call();        
