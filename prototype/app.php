@@ -107,8 +107,6 @@ $app_name = idx($app_info, 'name', '');
 
 }
 
-var_dump($user_id);
-var_dump($basic);
 
 //Fetch items
   $mongo = new \MongoWrapper\MongoWrapper();
