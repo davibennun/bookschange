@@ -101,9 +101,7 @@ var backend = (function($){
                 item.fb_id = window.fb_id;
                 $.ajax({
                     type: 'POST',
-                    contentType: 'application/json',
                     url: urls.itemsAdd,
-                    dataType: "json",
                     data: JSON.stringify(item),
                     success: function(data){
                       items.push(item);
