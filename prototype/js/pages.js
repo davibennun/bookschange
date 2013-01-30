@@ -41,7 +41,7 @@ function Controller (page){
 			
 
 			//If result is local or we have to fetch
-			if(backend.items.get(itemId)){
+			if(backend.items.get(itemId).length > 0){
 				var result = backend.items.get(itemId)[0];
 				$("#item-info-content").html(templates.itemInfo(result));
 			}else{
