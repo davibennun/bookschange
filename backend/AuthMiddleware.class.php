@@ -10,11 +10,12 @@ class AuthMiddleware extends \Slim\Middleware
         
         $req = $app->request();
         $post = $req->post();
-var_dump($post);
+
         if(!empty($post)){
         	$keys = array_keys($post);
-var_dump($keys);
+print_r($post);
         	if(!empty($keys)){
+        		print_r($keys);
         		$data = json_decode($keys[0]);
 		        //process and get facebook id
 		        $app->fb_id = $data->fb_id || "123456";		
