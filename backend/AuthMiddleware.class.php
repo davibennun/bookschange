@@ -13,8 +13,8 @@ class AuthMiddleware extends \Slim\Middleware
         $keys = array_keys($req->post());
         $data = json_decode($keys[0]);
 
-        var_dump($keys);
-        var_dump($data);
+        
+        var_dump($data->fb_id);
         //process and get facebook id
         $app->fb_id = $data->fb_id || "123456";
 
