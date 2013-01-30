@@ -352,7 +352,7 @@ $app_name = idx($app_info, 'name', '');
           // for (var i = 0; i < tokens.length; i++) {
           //     string.replace(new RegExp("\{"+(i+1)+"\}","g"),tokens[i]);
           // }
-          string.replace("{1}",tokens[0]); //desespero
+          string.replace("{1}",tokens); //desespero
           return string;
         }
 
