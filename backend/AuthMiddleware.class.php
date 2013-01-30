@@ -16,7 +16,7 @@ class AuthMiddleware extends \Slim\Middleware
         var_dump($keys);
         var_dump($data);
         //process and get facebook id
-        $app->fb_id = $data["fb_id"] || "123456";
+        $app->fb_id = $data->fb_id || "123456";
 
         // Run inner middleware and application
         $this->next->call();        
