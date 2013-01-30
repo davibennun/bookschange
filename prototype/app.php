@@ -369,7 +369,7 @@ $app_name = idx($app_info, 'name', '');
 
         }
 
-      Load the SDK Asynchronously
+      //Load the SDK Asynchronously
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
