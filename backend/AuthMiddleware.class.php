@@ -9,8 +9,8 @@ class AuthMiddleware extends \Slim\Middleware
         $app = &$this->app;
         
         $req = $app->request();
-        $data = json_encode($req->body());
-        var_dump($data);
+        
+        
         var_dump($req->post());
         var_dump($req->get());
         exit;
