@@ -9,9 +9,10 @@ class AuthMiddleware extends \Slim\Middleware
         $app = &$this->app;
         
         $req = $app->request();
-        
-        if(!empty($req->post())){
-        	$keys = array_keys($req->post());
+        $post = $req->post();
+
+        if(!empty($post)){
+        	$keys = array_keys($post);
 
         	if(!empty($keys)){
         		$data = json_decode($keys[0]);
