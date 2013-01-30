@@ -65,19 +65,9 @@ var backend = (function($){
                 var results = [];
                 var url = urls.itemsSearch.replace("{1}",query);
 
-                $.ajax({
-                    type: 'GET',
-                    contentType: 'application/json',
-                    url: url,
-                    dataType: "json",
-                    data: JSON.stringify(item),
-                    success: function(data){
-                      results.push(item);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown){
-                        console.log("Unable to reach backend");
-                    }
-                });
+               $.get(url,function(data){
+                console.log(data);
+               });
 
                 // for (var i in items){
                 //   var item = items[i];
