@@ -112,7 +112,7 @@ var backend = (function($){
                     data: JSON.stringify(item),
                     success: function(data){
                       items.push(item);
-                      $( "#popup-success" ).popup( "open" );
+                      $.dynamic_popup('Enter your <b>name</b> and <b>email</b> before submitting the form.');
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
