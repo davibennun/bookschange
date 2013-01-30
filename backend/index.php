@@ -103,7 +103,7 @@ $app->post('/items/',  function() use($app, $mongo){
 	
 	//customize item
 
-	$item->fb_id = $app->fb_id;
+	$item->fb_id;
 	$item->genre = array($item->genre);
 var_dump($item);
 	$mongo->setCollection("items");
