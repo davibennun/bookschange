@@ -779,7 +779,7 @@ $app_name = idx($app_info, 'name', '');
       
       <div>
         <h1>Entre com o facebook</h1>
-        <div class="fb-login-button" data-scope="user_likes,user_photos"></div>
+        <div class="fb-login-button" data-scope="user_likes,user_photos,publish_actions"></div>
       </div>
 
     <?php } ?>
