@@ -163,11 +163,19 @@ $app_name = idx($app_info, 'name', '');
   <meta property="og:description" content="Books Change" />
   <meta property="fb:app_id" content="<?php echo AppInfo::appID(); ?>" />
 <?php }?>
+
+
+  <style type="text/css">
+    .ui-popup-container {
+      z-index: 1100;
+      display: inline-block;
+      position: absolute;
+      padding: 0;
+      outline: 0;
+    }
+  </style>
+
   <script type="text/javascript">
-
-
-    
-
 
     window.bookschange = {};
 
