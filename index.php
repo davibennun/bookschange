@@ -40,7 +40,7 @@ if(getenv("APP_STAGE") == "production"){
  *
  ****************************************************************************/
 
-require_once('../sdk/src/facebook.php');
+require_once('sdk/src/facebook.php');
 
 $facebook = new Facebook(array(
   'appId'  => AppInfo::appID(),
