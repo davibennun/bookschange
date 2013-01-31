@@ -253,10 +253,13 @@ $app_name = idx($app_info, 'name', '');
             
           // });  
 
-          $("#install-app").click(function(e){
+          $(".install-app").click(function(e){
             console.log("test");
             
+
+
             mozilla = location.href + 'manifest.webapp';
+            console.log(mozilla);
             mozillaInstall = function () {
                 var installRequest = navigator.mozApps.install(mozilla);
 
@@ -269,7 +272,9 @@ $app_name = idx($app_info, 'name', '');
                 };
             };
 
-          
+            mozillaInstall();
+
+
 
           });
 
@@ -433,7 +438,7 @@ $app_name = idx($app_info, 'name', '');
           <div id="page1-content">
           </div>
           <div id="page8-content"></div>
-          <button id="install-app">Install App</button>
+          <button class="install-app">Install App</button>
           <form action="">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
@@ -813,7 +818,7 @@ $app_name = idx($app_info, 'name', '');
       <div>
         <h1>Sign in with facebook</h1>
         <div class="fb-login-button" data-scope="user_likes,user_photos,publish_actions"></div>
-        <button id="install-app">Install App</button>
+        <button class="install-app">Install App</button>
       </div>
 
     <?php } ?>
