@@ -160,7 +160,8 @@ $app_name = idx($app_info, 'name', '');
 <?php }?>
   <script type="text/javascript">
 
-    install();
+
+    
 
 
     window.bookschange = {};
@@ -251,6 +252,11 @@ $app_name = idx($app_info, 'name', '');
           // FB.api('/me', function(response) {
             
           // });  
+
+          $("#install-app").click(function(e){
+            console.log("test");
+            install();
+          });
 
         
         var timeout;
@@ -791,6 +797,7 @@ $app_name = idx($app_info, 'name', '');
       <div>
         <h1>Sign in with facebook</h1>
         <div class="fb-login-button" data-scope="user_likes,user_photos,publish_actions"></div>
+        <button id="install-app">Install App</button>
       </div>
 
     <?php } ?>
