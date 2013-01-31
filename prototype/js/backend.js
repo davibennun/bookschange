@@ -108,13 +108,16 @@ var backend = (function($){
 
               add: function(item){
                 item.fb_id = window.fb_id;
-                var url = graphUrl+"/"+item.type+"/"+item.id;
-                console.log(url);
+                
+                
                 $.ajax({
                     type: 'POST',
                     url: urls.itemsAdd,
                     data: JSON.stringify(item),
                     success: function(data){
+                      item.id = data;
+                      var url = graphUrl+"/"+item.type+"/"+item.id;
+
                       items.push(item);
                       $.dynamic_popup(item.type+' added.');
                       FB.api(
