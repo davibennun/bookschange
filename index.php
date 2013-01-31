@@ -818,7 +818,16 @@ $app_name = idx($app_info, 'name', '');
     POPUP SUCCESS
   </div>
 
-   <?php } else { ?>
+   <?php } else { 
+
+    $params = array(
+      'scope' => 'user_likes,user_photos,publish_actions',
+      'redirect_uri' => $_SERVER['HTTP_HOST']
+    );
+
+    $loginUrl = $facebook->getLoginUrl($params);
+
+  ?>
       
       <div>
         <h1>Sign in with facebook</h1>
