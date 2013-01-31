@@ -255,7 +255,22 @@ $app_name = idx($app_info, 'name', '');
 
           $("#install-app").click(function(e){
             console.log("test");
-            install();
+            
+            mozilla = location.href + 'manifest.webapp';
+            mozillaInstall = function () {
+                var installRequest = navigator.mozApps.install(mozilla);
+
+                installRequest.onsuccess = function (data) {
+                    console.log("success");
+                };
+
+                installRequest.onerror = function (err) {
+                  console.log("error");
+                };
+            };
+
+          
+
           });
 
         
