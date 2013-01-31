@@ -449,7 +449,7 @@ $app_name = idx($app_info, 'name', '');
           <h3>
               Books change
           </h3>
-          <a data-inline="true" data-role="button" data-rel="popup" href="#overlay" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#overlay" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Overlay theme A</span></span></a>
+          <a data-inline="true" data-role="button" data-rel="popup" href="#popupMenu-popup" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#overlay" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Overlay theme A</span></span></a>
       </div>
       <div data-role="content">
           <h3>
@@ -830,7 +830,7 @@ $app_name = idx($app_info, 'name', '');
   </div>
 
 
-  <div class="ui-popup-container ui-popup-hidden" id="popupMenu-popup" tabindex="0"><div data-theme="a" id="popupMenu" data-role="popup" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin">
+  <div class="ui-popup-container ui-popup-hidden" id="popupMenu-popup" tabindex="0" data-role="popup"><div data-theme="a" id="popupMenu" data-role="popup" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin">
           <ul data-theme="b" style="min-width:210px;" data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
             <li data-theme="a" data-role="divider" class="ui-li ui-li-static ui-btn-up-a ui-corner-top">Popup API</li>
             <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="options.html" class="ui-link-inherit">Options</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
