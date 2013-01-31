@@ -4,7 +4,7 @@
                   http://ogp.me/ns/apps/<?php echo $app_namespace; ?>#">
   <title><?php echo $title; ?></title>
   <meta property="fb:app_id" content="<?php echo $app_id; ?>" /> 
-  <meta property="og:type" content="<?php echo $type; ?>:book" /> 
+  <meta property="og:type" content="<?php echo $namespace; ?>:book" /> 
   <meta property="og:title" content="<?php echo $title; ?>" /> 
   <meta property="og:image" content="<?php echo $image; ?>" /> 
   <meta property="og:description" content="<?php echo $description; ?>" /> 
