@@ -4,6 +4,8 @@ var backend = (function($){
           var recommendations = window.bookschange.recommendations || [];
           var notifications = window.bookschange.notifications || [];
 
+          var graphUrl = "http://"+window.location.host+"/backend/fb";
+
           var limit = 15;
 
           var urls = {
@@ -106,18 +108,32 @@ var backend = (function($){
 
               add: function(item){
                 item.fb_id = window.fb_id;
+                var url = graphUrl+"+"+item.type+"/"+item.id;
+                console.log(url);
                 $.ajax({
                     type: 'POST',
                     url: urls.itemsAdd,
                     data: JSON.stringify(item),
                     success: function(data){
                       items.push(item);
-                      $.dynamic_popup('Enter your <b>name</b> and <b>email</b> before submitting the form.');
+                      $.dynamic_popup(item.type+' added.');
+                      FB.api(
+                      '/me/bookschange:donate?book='+url,
+                      'post',
+                      function(response) {
+                         if (!response || response.error) {
+                            console.log('Error occured');
+                         } else {
+                            console.log('Cook was successful! Action ID: ' + response.id);
+                         }
+                      });
                     },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
                     }
                 });
+
+
               },
 
               update: function(id, newItem){
