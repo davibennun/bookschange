@@ -435,6 +435,7 @@ $app_name = idx($app_info, 'name', '');
           <h3>
               Books change
           </h3>
+          <a data-inline="true" data-role="button" data-rel="popup" href="#popupMenu" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#popupMenu" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Menu</span></span></a>
       </div>
       <div data-role="content">
           <h3>
@@ -814,9 +815,16 @@ $app_name = idx($app_info, 'name', '');
     </div>
   </div>
 
-  <div id="popup-success" data-role="popup" data-theme="e" data-overlay-theme="a" class="ui-content">
-    POPUP SUCCESS
-  </div>
+
+  <div class="ui-popup-container ui-popup-active" id="popupMenu-popup" style="max-width: 1250px; top: 636px; left: 534px;" tabindex="0"><div data-theme="a" id="popupMenu" data-role="popup" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin">
+          <ul data-theme="b" style="min-width:210px;" data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+            <li data-theme="a" data-role="divider" class="ui-li ui-li-static ui-btn-up-a ui-corner-top">Popup API</li>
+            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="options.html" class="ui-link-inherit">Options</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
+            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="methods.html" class="ui-link-inherit">Methods</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
+            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-up-b ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-bottom ui-li-last"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="events.html" class="ui-link-inherit">Events</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
+          </ul>
+      </div></div>
+
 
    <?php } else { 
 
@@ -832,7 +840,6 @@ $app_name = idx($app_info, 'name', '');
       <div>
         <h1>Sign in with facebook</h1>
         <a href="<?php echo $loginUrl; ?>">Entrar com Facebook</a>
-        <button class="install-app">Install App</button>
       </div>
 
     <?php } ?>
