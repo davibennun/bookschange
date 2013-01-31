@@ -831,7 +831,7 @@ $app_name = idx($app_info, 'name', '');
       
       <div>
         <h1>Sign in with facebook</h1>
-        <div class="fb-login-button" data-scope="user_likes,user_photos,publish_actions"></div>
+        <a href="<?php echo $loginUrl; ?>">Entrar com Facebook</a>
         <button class="install-app">Install App</button>
       </div>
 
