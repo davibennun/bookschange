@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"
+      xmlns:fb="https://www.facebook.com/2008/fbml"> 
+<head prefix="og: http://ogp.me/ns# [YOUR_APP_NAMESPACE]: 
+                  http://ogp.me/ns/apps/[YOUR_APP_NAMESPACE]#">
+  <title></title>
+  <meta property="fb:app_id" content="[YOUR_APP_ID]" /> 
+  <meta property="og:type" content="[YOUR_APP_NAMESPACE]:recipe" /> 
+  <meta property="og:title" content="Stuffed Cookies" /> 
+  <meta property="og:image" content="http://fbwerks.com:8000/zhen/cookie.jpg" /> 
+  <meta property="og:description" content="The Turducken of Cookies" /> 
+  <meta property="og:url" content="http://fbwerks.com:8000/zhen/cookie.html" />
+</head>
+<body>
+</body>
+</html>
