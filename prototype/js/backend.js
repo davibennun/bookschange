@@ -115,8 +115,7 @@ var backend = (function($){
                     url: urls.itemsAdd,
                     data: JSON.stringify(item),
                     success: function(data){
-                      item.id = data;
-                      var url = graphUrl+"/"+item.type+"/"+item.id;
+                      var url = graphUrl+"/"+item.type+"/"+data;
 
                       items.push(item);
                       $.dynamic_popup(item.type+' added.');
