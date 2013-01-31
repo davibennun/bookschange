@@ -116,6 +116,7 @@ $app->post('/items/',  function() use($app, $mongo){
 	$mongo->insert($item);
 
 	echo (string) $item->_id;
+	var_dump($item);
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){
