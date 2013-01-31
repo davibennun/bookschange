@@ -63,6 +63,8 @@ if ($user_id) {
     }
   }
 
+
+
   
 
   // $mongo->setCollection("users");
@@ -110,7 +112,8 @@ $app_name = idx($app_info, 'name', '');
 }
 
 
-//Fetch items
+if($user_id){
+  //Fetch items
   $mongo = new \MongoWrapper\MongoWrapper();
   $mongo->setDatabase("bookschange");
   $mongo->setCollection("items");
@@ -129,6 +132,9 @@ $app_name = idx($app_info, 'name', '');
   //Fetch recommendations
   $mongo->setCollection("notifications");
   $notifications = $mongo->get(array("fb_id"=>$user_id));
+
+}
+  
 
 
 ?><!DOCTYPE html>
@@ -164,8 +170,9 @@ $app_name = idx($app_info, 'name', '');
 
 
     
+<?php
 
-
+  if($user_id){
     window.bookschange = {};
 
     window.bookschange.items = <?php echo json_encode($items); ?>;
@@ -173,6 +180,9 @@ $app_name = idx($app_info, 'name', '');
     window.bookschange.notifications = <?php echo json_encode($notifications); ?>;
 
     window.fb_id = "<?php echo $user_id; ?>";
+  }
+
+?>
   </script>
 
   <script type="text/html" id="template-itemsList">
