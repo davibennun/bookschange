@@ -418,6 +418,7 @@ $app_name = idx($app_info, 'name', '');
           <div id="page1-content">
           </div>
           <div id="page8-content"></div>
+          <button id="install-app">Install App</button>
           <form action="">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
