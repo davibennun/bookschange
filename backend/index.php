@@ -8,14 +8,17 @@ require 'AuthMiddleware.class.php';
 
 require 'MongoWrapper.class.php';
 
+require_once('../AppInfo.php');
 
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 $app->add(new \AuthMiddleware());
+$app->item_address = AppInfo::getUrl()."prototype/app.php#page2?item_id=";
 
 $mongo = new \MongoWrapper\MongoWrapper(getenv("MONGOHQURL"));
 
 $mongo->setDatabase("bookschange");
+
 
 
 $app->get('/notifications/:limit',function($limit) use ($app,$mongo){
@@ -65,7 +68,7 @@ $app->delete('/notifications/:id', function($id) use($app, $mongo){
 
 $app->get('/items/:id', function($id) use($app, $mongo){
 	$mongo->setCollection("items");
-	
+
 	$result = $mongo->get(array("_id"=>new MongoId($id)));
 
 	echo json_encode($result);
@@ -133,6 +136,52 @@ $app->delete('/items/:id', function($id) use($app, $mongo){
 
 	$mongo->delete(array("_id"=>new MongoId($id)));
 });
+
+
+$app->get("/fb/book/:id",function($id) use($app, $mongo){
+	
+
+	$mongo->setCollection("items");
+	$data = $mongo->get(array("_id"=>new MongoId($id)));
+	$data = $data[0];
+	$data["app_id"] = AppInfo::appID();
+	$data["app_namespace"] = AppInfo::appNamespace();
+	$data["url"] = $app->item_address.$id;
+	if(!isset($data['description'])) $data["description"] = "";
+	$data['image']= "";
+	
+
+	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
+	  
+	}else {
+	  if(getenv("APP_STAGE") == "production")  
+	  	header("Location: ". $item_address.$id);
+	}
+
+	$app->render('template-opengraph-book.tpl', $data);
+});
+
+$app->get("/fb/magazine/:id",function(){
+$mongo->setCollection("items");
+	$data = $mongo->get(array("_id"=>new MongoId($id)));
+	$data = $data[0];
+	$data["app_id"] = AppInfo::appID();
+	$data["app_namespace"] = AppInfo::appNamespace();
+	$data["url"] = $app->item_address.$id;
+	if(!isset($data['description'])) $data["description"] = "";
+	$data['image']= "";
+	
+
+	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
+	  
+	}else {
+	  if(getenv("APP_STAGE") == "production")  
+	  	header("Location: ". $item_address.$id);
+	}
+
+	$app->render('template-opengraph-magazine.tpl', $data);
+});
+
 
 
 $app->run();

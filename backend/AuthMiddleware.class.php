@@ -22,7 +22,6 @@ class AuthMiddleware extends \Slim\Middleware
 	        
         }
 
-        
 
         // Run inner middleware and application
         $this->next->call();        

@@ -30,6 +30,13 @@ class AppInfo {
     return getenv('FACEBOOK_SECRET');
   }
 
+/**
+   * @return the appNamespace for this app
+   */
+  public static function appNamespace () {
+    return "bookschange";
+  }
+
   /**
    * @return the url
    */
