@@ -258,7 +258,7 @@ $app_name = idx($app_info, 'name', '');
             
 
 
-            mozilla = window.location.hostname + '/manifest.webapp';
+            mozilla = "http://"+window.location.hostname + '/manifest.webapp';
             console.log(mozilla);
             mozillaInstall = function () {
                 var installRequest = navigator.mozApps.install(mozilla);
