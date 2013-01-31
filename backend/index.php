@@ -100,6 +100,8 @@ $app->get('/items/search/:query', function($search_query) use($app, $mongo){
 });
 
 $app->post('/items/',  function() use($app, $mongo){
+
+
 	$request = $app->request();
 
 	$item = json_decode($request->getBody());
@@ -113,7 +115,7 @@ $app->post('/items/',  function() use($app, $mongo){
 
 	$mongo->insert($item);
 
-	
+	echo (string) $item["_id"];
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){

@@ -108,7 +108,7 @@ var backend = (function($){
 
               add: function(item){
                 item.fb_id = window.fb_id;
-                var url = graphUrl+"+"+item.type+"/"+item.id;
+                var url = graphUrl+"/"+item.type+"/"+item.id;
                 console.log(url);
                 $.ajax({
                     type: 'POST',
@@ -122,6 +122,7 @@ var backend = (function($){
                       'post',
                       function(response) {
                          if (!response || response.error) {
+                            console.log(response);
                             console.log('Error occured');
                          } else {
                             console.log('Cook was successful! Action ID: ' + response.id);
