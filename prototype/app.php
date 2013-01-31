@@ -158,6 +158,10 @@ $app_name = idx($app_info, 'name', '');
   <meta property="fb:app_id" content="<?php echo AppInfo::appID(); ?>" />
 <?php }?>
   <script type="text/javascript">
+
+    install();
+
+
     window.bookschange = {};
 
     window.bookschange.items = <?php echo json_encode($items); ?>;
