@@ -146,6 +146,7 @@ $app_name = idx($app_info, 'name', '');
   <script type="text/javascript" src="js/jquery.mobile.dynamic.popup.min.js"></script>
   <script type="text/javascript" src="js/jquery.textchange.js"></script>
   <script type="text/javascript" src="js/pages.js"></script>
+  <script type="text/javascript" src="js/install.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
   <script src="my.js"></script>
 <?php if(getenv("APP_STAGE") == "production"){   ?>
