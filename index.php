@@ -821,11 +821,11 @@ $app_name = idx($app_info, 'name', '');
    <?php } else { 
 
     $params = array(
-      'scope' => 'user_likes,user_photos,publish_actions',
-      'redirect_uri' => $_SERVER['HTTP_HOST']
+      'scope' => 'user_likes, user_photos, publish_actions',
+      //'redirect_uri' => $_SERVER['HTTP_HOST']
     );
 
-    $loginUrl = $facebook->getLoginUrl();//$params);
+    $loginUrl = $facebook->getLoginUrl($params);
 
   ?>
       
