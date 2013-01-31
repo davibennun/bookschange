@@ -151,7 +151,7 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 	$data["app_namespace"] = AppInfo::appNamespace();
 	$data["url"] = $app->item_address.$id;
 	if(!isset($data['description'])) $data["description"] = "";
-	$data['image']= "";
+	$data['image']= "http://placekitten.com/300/300";
 	
 
 	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
@@ -175,7 +175,7 @@ $mongo->setCollection("items");
 	$data["app_namespace"] = AppInfo::appNamespace();
 	$data["url"] = $app->item_address.$id;
 	if(!isset($data['description'])) $data["description"] = "";
-	$data['image']= "";
+	$data['image']= "http://placekitten.com/300/300";
 	
 
 	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
