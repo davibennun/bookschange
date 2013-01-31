@@ -117,7 +117,7 @@ $app->post('/items/',  function() use($app, $mongo){
 
 	echo (string) $item->_id;
 	
-	exit;
+	
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){
