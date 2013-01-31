@@ -143,6 +143,9 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 
 	$mongo->setCollection("items");
 	$data = $mongo->get(array("_id"=>new MongoId($id)));
+	if(empty(data)){
+		return;
+	}
 	$data = $data[0];
 	$data["app_id"] = AppInfo::appID();
 	$data["app_namespace"] = AppInfo::appNamespace();
@@ -164,6 +167,9 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 $app->get("/fb/magazine/:id",function(){
 $mongo->setCollection("items");
 	$data = $mongo->get(array("_id"=>new MongoId($id)));
+	if(empty(data)){
+		return;
+	}
 	$data = $data[0];
 	$data["app_id"] = AppInfo::appID();
 	$data["app_namespace"] = AppInfo::appNamespace();
