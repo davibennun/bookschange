@@ -11,7 +11,6 @@ function Controller (page){
 		"6":function(){
 			console.log("add");
 
-
 		},
 		"7": function(){
 			console.log("items");

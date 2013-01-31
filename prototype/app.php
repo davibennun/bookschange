@@ -283,7 +283,13 @@ $app_name = idx($app_info, 'name', '');
 
           if(window.location.hash.length<=0){
             controller.go("1");
+          }else if(window.location.hash.indexOf("itemId")){
+            var data = {};
+            data.toPage = window.location.href;
+
+            controller.go("2",{},data);
           }
+
 
           
 
@@ -778,7 +784,7 @@ $app_name = idx($app_info, 'name', '');
    <?php } else { ?>
       
       <div>
-        <h1>Entre com o facebook</h1>
+        <h1>Sign in with facebook</h1>
         <div class="fb-login-button" data-scope="user_likes,user_photos,publish_actions"></div>
       </div>
 
