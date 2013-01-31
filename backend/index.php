@@ -150,6 +150,7 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 	$data["app_id"] = AppInfo::appID();
 	$data["app_namespace"] = AppInfo::appNamespace();
 	$data["url"] = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$data["url_user"] = $app->item_address.$id;
 	if(!isset($data['description'])) $data["description"] = "";
 	$data['image']= "http://placekitten.com/300/300";
 	
@@ -173,7 +174,8 @@ $mongo->setCollection("items");
 	$data = $data[0];
 	$data["app_id"] = AppInfo::appID();
 	$data["app_namespace"] = AppInfo::appNamespace();
-	$data["url"] = $app->item_address.$id;
+	$data["url"] = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$data["url_user"] = $app->item_address.$id;
 	if(!isset($data['description'])) $data["description"] = "";
 	$data['image']= "http://placekitten.com/300/300";
 	

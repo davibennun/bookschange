@@ -9,5 +9,8 @@
   <meta property="og:image" content="<?php echo $image; ?>" /> 
   <meta property="og:description" content="<?php echo $description; ?>" /> 
   <meta property="og:url" content="<?php echo $url; ?>" />
+  <script type="text/javascript">
+  window.location = <?php echo $url; ?>;
+  </script>
 </head>
 </html>
