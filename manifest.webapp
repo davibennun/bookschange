@@ -2,7 +2,7 @@
   "version": "0.1",
   "name": "BooksChange",
   "description": "Donate and share books and magazines",
-  "launch_path": "/",
+  "launch_path": "/prototype/app.php",
   "icons": {
     "16": "/img/icons/mortar-16.png",
     "48": "/img/icons/mortar-48.png",
