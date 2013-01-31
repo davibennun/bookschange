@@ -172,7 +172,7 @@ if($user_id){
     
 <?php
 
-  if($user_id){
+  
     window.bookschange = {};
 
     window.bookschange.items = <?php echo json_encode($items); ?>;
@@ -180,7 +180,6 @@ if($user_id){
     window.bookschange.notifications = <?php echo json_encode($notifications); ?>;
 
     window.fb_id = "<?php echo $user_id; ?>";
-  }
 
 ?>
   </script>
