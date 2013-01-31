@@ -115,7 +115,7 @@ $app->post('/items/',  function() use($app, $mongo){
 
 	$mongo->insert($item);
 
-	echo (string) $item["_id"];
+	echo (string) $item->_id;
 });
 
 $app->put('/items/:id', function($id) use($app, $mongo){
