@@ -157,8 +157,8 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
 	  
 	}else {
-	  if(getenv("APP_STAGE") == "production")  
-	  	header("Location: ". $app->item_address.$id);
+	  // if(getenv("APP_STAGE") == "production")  
+	  // 	header("Location: ". $app->item_address.$id);
 	}
 
 	$app->render('template-opengraph-book.tpl', $data);
@@ -181,8 +181,8 @@ $mongo->setCollection("items");
 	if(preg_match('/^FacebookExternalHit\/.*?/i',$_SERVER['HTTP_USER_AGENT'])){
 	  
 	}else {
-	  if(getenv("APP_STAGE") == "production")  
-	  	header("Location: ". $app->item_address.$id);
+	  // if(getenv("APP_STAGE") == "production")  
+	  // 	header("Location: ". $app->item_address.$id);
 	}
 
 	$app->render('template-opengraph-magazine.tpl', $data);
