@@ -149,7 +149,7 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 	$data = $data[0];
 	$data["app_id"] = AppInfo::appID();
 	$data["app_namespace"] = AppInfo::appNamespace();
-	$data["url"] = $app->item_address.$id;
+	$data["url"] = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	if(!isset($data['description'])) $data["description"] = "";
 	$data['image']= "http://placekitten.com/300/300";
 	
