@@ -435,7 +435,7 @@ $app_name = idx($app_info, 'name', '');
           <h3>
               Books change
           </h3>
-          <a data-inline="true" data-role="button" data-rel="popup" href="#popupMenu" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#popupMenu" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Menu</span></span></a>
+          <a data-inline="true" data-role="button" data-rel="popup" href="#overlay" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#overlay" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Overlay theme A</span></span></a>
       </div>
       <div data-role="content">
           <h3>
@@ -825,6 +825,9 @@ $app_name = idx($app_info, 'name', '');
           </ul>
       </div></div>
 
+<div id="both" data-role="popup" data-theme="e" data-overlay-theme="a" class="ui-content">
+  ...Popup contents...
+</div>
 
    <?php } else { 
 
