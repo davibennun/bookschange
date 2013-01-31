@@ -112,8 +112,8 @@ $app_name = idx($app_info, 'name', '');
 }
 
 
-if($user_id){
-  //Fetch items
+
+//Fetch items
   $mongo = new \MongoWrapper\MongoWrapper();
   $mongo->setDatabase("bookschange");
   $mongo->setCollection("items");
@@ -132,9 +132,6 @@ if($user_id){
   //Fetch recommendations
   $mongo->setCollection("notifications");
   $notifications = $mongo->get(array("fb_id"=>$user_id));
-
-}
-  
 
 
 ?><!DOCTYPE html>
@@ -170,9 +167,8 @@ if($user_id){
 
 
     
-<?php
 
-  
+
     window.bookschange = {};
 
     window.bookschange.items = <?php echo json_encode($items); ?>;
@@ -180,8 +176,6 @@ if($user_id){
     window.bookschange.notifications = <?php echo json_encode($notifications); ?>;
 
     window.fb_id = "<?php echo $user_id; ?>";
-
-?>
   </script>
 
   <script type="text/html" id="template-itemsList">
