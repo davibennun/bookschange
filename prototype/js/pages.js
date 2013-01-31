@@ -17,7 +17,7 @@ function Controller (page){
 
 			$("#page7-content").html(templates.itemsList({data:backend.items.get()}));
 			//$('div[data-role="page"]').page();
-			$("#page7").trigger("create");
+			//$("#page7").trigger("create");
 			
 		},
 		"5":function(){
