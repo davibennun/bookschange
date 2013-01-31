@@ -158,7 +158,7 @@ $app->get("/fb/book/:id",function($id) use($app, $mongo){
 	  
 	}else {
 	  if(getenv("APP_STAGE") == "production")  
-	  	header("Location: ". $item_address.$id);
+	  	header("Location: ". $app->item_address.$id);
 	}
 
 	$app->render('template-opengraph-book.tpl', $data);
@@ -182,7 +182,7 @@ $mongo->setCollection("items");
 	  
 	}else {
 	  if(getenv("APP_STAGE") == "production")  
-	  	header("Location: ". $item_address.$id);
+	  	header("Location: ". $app->item_address.$id);
 	}
 
 	$app->render('template-opengraph-magazine.tpl', $data);
