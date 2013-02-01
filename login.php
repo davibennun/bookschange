@@ -23,6 +23,7 @@ try{
 }catch(Exception $e){
 	var_dump($e);
 }
-//var_dump($user_id);
-//echo $_REQUEST["code"];
-header("Location: http://".$_SERVER['HTTP_HOST']);
+
+var_dump($user_id);
+echo $_REQUEST["code"];
+//header("Location: http://".$_SERVER['HTTP_HOST']);
