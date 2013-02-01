@@ -686,7 +686,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
               Add
           </a>
           <h3>
-              Notifications
+              My notifications
           </h3>
           <div id="page5-content">
             <!-- Info -->
