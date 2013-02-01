@@ -931,12 +931,10 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
     $params = array(
       'scope' => 'user_likes, user_photos, publish_actions',
-      'redirect_uri' => "http://".$_SERVER['HTTP_HOST']."/login.php"
+      'redirect_uri' => "http://".$_SERVER['HTTP_HOST']."/index.php"
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
-    echo $loginUrl;
-
   ?>
       
       <div id="login-box">
