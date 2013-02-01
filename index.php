@@ -55,10 +55,7 @@ try{
 
 $user_id = $facebook->getUser();
 
-if(isset($_GET['state'])){
-  header('Location: http://'.$_SERVER['HTTP_HOST']);
-
-}
+var_dump($user_id);
 
 $mongo = new \MongoWrapper\MongoWrapper();
 $mongo->setDatabase("bookschange");
