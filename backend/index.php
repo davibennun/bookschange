@@ -85,7 +85,7 @@ $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
 	//Get in genres collection what we have in user genres
 	//$crietria = array("genre"=>array("$in"=>$user['genre']));
 
-	$result = $mongo->get($criteria ,$limit);
+	$result = $mongo->get(array() ,$limit);
 
 	echo json_encode($result);
 });
