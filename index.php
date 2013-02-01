@@ -900,6 +900,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       <div>
         <h1>Sign in with facebook</h1>
         <a href="<?php echo $loginUrl; ?>">Entrar com Facebook</a>
+        <button class="install-app">Install App</button>
       </div>
 
     <?php } ?>
