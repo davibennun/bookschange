@@ -17,7 +17,10 @@ try{
 }catch(Exception $e){
   var_dump($e);
 }
-
+try{
 $user_id = $facebook->getUser();
+}catch(Exception $e){
+	var_dump($e);
+}
 var_dump($user_id);
 //header("Location: http://".$_SERVER['HTTP_HOST']);
