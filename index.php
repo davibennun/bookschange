@@ -188,18 +188,18 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       }
 
       #login-box{
-      position:fixed;
-      top: 50%;
-      left: 50%;
-      width:16em;
-      height:18em;
-      margin-top: -9em; /*set to a negative number 1/2 of your height*/
-      margin-left: -8em; /*set to a negative number 1/2 of your width*/
-      background-image: url("http://css-tricks.com/examples/TranspFills/images/transpBlack50.png");
-      text-align: center;
-      color:white;
-      border-radius:10px;
-      padding:15px;
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        width:250px;
+        height:18em;
+        margin-top: -9em; /*set to a negative number 1/2 of your height*/
+        margin-left: -125px; /*set to a negative number 1/2 of your width*/
+        background-image: url("http://css-tricks.com/examples/TranspFills/images/transpBlack50.png");
+        text-align: center;
+        color:white;
+        border-radius:10px;
+        padding:15px;
       }
 
   </style>
