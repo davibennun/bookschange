@@ -4,10 +4,13 @@
                   http://ogp.me/ns/apps/<?php echo $app_namespace; ?>#">
   <title><?php echo $title; ?></title>
   <meta property="fb:app_id" content="<?php echo $app_id; ?>" /> 
-  <meta property="og:type" content="<?php echo $type; ?>:magazine" /> 
+  <meta property="og:type" content="<?php echo $app_namespace; ?>:magazine" /> 
   <meta property="og:title" content="<?php echo $title; ?>" /> 
   <meta property="og:image" content="<?php echo $image; ?>" /> 
   <meta property="og:description" content="<?php echo $description; ?>" /> 
   <meta property="og:url" content="<?php echo $url; ?>" />
+  <script type="text/javascript">
+    window.location = "<?php echo $url_user; ?>";
+  </script>
 </head>
 </html>
