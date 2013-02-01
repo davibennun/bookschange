@@ -923,9 +923,14 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       <div id="login-box">
         <h2>BooksChange</h2>
         <strong style="display:block;">New way to share and get books and magazines</strong>
-        <ul data-role="listview" data-divider-theme="b" data-inset="true" data-cid="listview5" class="codiqa-control ui-listview ui-listview-inset ui-corner-all ui-shadow" style="">
-                  <li data-theme="b" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-top ui-corner-bottom ui-li-last ui-btn-active ui-btn-up-b"><div class="ui-btn-inner ui-li ui-corner-top"><div class="ui-btn-text"><a href="<?php echo $loginUrl; ?>" class="ui-link-inherit">Sign in with Facebook</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
-          </ul>
+        <ul data-role="listview" data-divider-theme="b" data-inset="true">
+            <li data-theme="b">
+                <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
+                    Sair
+                </a>
+            </li>
+        </ul>
+        
         
         <button class="install-app">Install App</button>
       </div>
