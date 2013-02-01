@@ -12,8 +12,7 @@ try{
     'appId'  => AppInfo::appID(),
     'secret' => AppInfo::appSecret(),
     'sharedSession' => true,
-    'trustForwarded' => true,
-    'cookie'=>true
+    'trustForwarded' => true
   ));
 }catch(Exception $e){
   var_dump($e);
@@ -21,5 +20,5 @@ try{
 
 $user_id = $facebook->getUser();
 var_dump($user_id);
-
+var_dump($_SERVER);
 //header("Location: http://".$_SERVER['HTTP_HOST']);
