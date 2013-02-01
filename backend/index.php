@@ -35,10 +35,10 @@ $app->get('/notifications/:limit',function($limit) use ($app,$mongo){
 
 $app->post('/notifications/',  function() use($app, $mongo){
 	$request = $app->request();
-
-	$item = json_decode($request->getBody());
+	$item = $request->post();
+	var_dump($item);
 	$item["fb_id"] = $app->fb_id;
-
+var_dump($item);
 	$mongo->setCollection("notifications");
 
 	$mongo->insert($item);

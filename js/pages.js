@@ -63,16 +63,17 @@ function Controller (page){
 			$("#page8-content").show();
 			var query = $("#search-input").val();
 			if(query==""){
-				var result = {data:backend.items.get()};
+				var result = backend.items.get();
+				$("#page8-content").html(templates.itemsList(result));
 			}else{
-				var result = {data:backend.items.search(query)};
-			}
-			
-			if(result.data.length==0){
-				$("#page8-content").html("<b>Não há itens para mostrar, mas voce pode ser notificado quando se tornar disponível</b>");
-				$("#page8-content").append('<a data-role="button" href="#page9" data-cid="button6" class="codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-down-c" style="" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Criar notificação</span></span></a>');
-			}else{
-				$("#page8-content").html(templates.itemsList(result));	
+				backend.items.search(query,function(result){
+					if(_.isEmpty(result)){
+						$("#page8-content").html("<b>There`s no items to show, you can be notified when this item became available</b>");
+						$("#page8-content").append('<a data-role="button" href="#page9" data-cid="button6" class="codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-down-c" style="" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Create notification</span></span></a>');
+					}else{
+						$("#page8-content").html(templates.itemsList({data:result}));
+					}
+				});
 			}
 		},
 		"9":function(){

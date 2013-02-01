@@ -78,33 +78,13 @@ if ($user_id) {
 
   
 
-  // $mongo->setCollection("users");
-  // $user_data = $mongo->get(array("uid"=>$basic["uid"]));
+  $mongo->setCollection("users");
+  $user_data = $mongo->get(array("fb_id"=>$user_id));
 
-  // if(empty($user_data)){
-  //   //register it on db
-  // }else{
-  //   //set it on session
-  // }
+  if(empty($user_data)){
+    die("First time user");
+  }
 
-
-  // This fetches some things that you like . 'limit=*" only returns * values.
-  // To see the format of the data you are retrieving, use the "Graph API
-  // Explorer" which is at https://developers.facebook.com/tools/explorer/
-  $likes = idx($facebook->api('/me/likes?limit=4'), 'data', array());
-
-  // This fetches 4 of your friends.
-  $friends = idx($facebook->api('/me/friends?limit=4'), 'data', array());
-
-  // And this returns 16 of your photos.
-  $photos = idx($facebook->api('/me/photos?limit=16'), 'data', array());
-
-  // Here is an example of a FQL call that fetches all of your friends that are
-  // using this app
-  $app_using_friends = $facebook->api(array(
-    'method' => 'fql.query',
-    'query' => 'SELECT uid, name FROM user WHERE uid IN(SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1'
-  ));
 }
 
 // Fetch the basic info of the app that they are using
@@ -167,7 +147,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <script type="text/javascript" src="js/jquery.mobile.dynamic.popup.min.js"></script>
   <script type="text/javascript" src="js/jquery.textchange.js"></script>
   <script type="text/javascript" src="js/pages.js"></script>
-  <script type="text/javascript" src="js/install.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
   <script src="my.js"></script>
 <?php if(getenv("APP_STAGE") == "production"){   ?>
@@ -236,13 +215,15 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   </script>
 
   <script type="text/html" id="template-itemsList">
-    <ul data-role="listview" data-divider-theme="b" data-inset="true">
+    <ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
         {{#data}}
-        <li data-theme="c">
-          <a href="#page2?item_id={{id}}" data-transition="slide">
+        <li data-theme="c" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">
+          <a href="#page2?item_id={{id}}" data-transition="slide" class="ui-link-inherit">
             {{title}}
           </a>
-        </li>
+        </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
+        
+        
         {{/data}}
     </ul>
   </script>
@@ -263,13 +244,18 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   </script>
 
   <script type="text/html" id="template-notificationsList">
-  <ul data-role="listview" data-divider-theme="b" data-inset="true">
-  {{#data}}
-      <li data-theme="c">
+  <div data-role="collapsible-set" data-content-theme="d" id="page5-content">
+
+    <ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+    {{#data}}
+        <li data-theme="c" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">
+          <a data-transition="slide" class="ui-link-inherit">
             {{title}}
-        </li>
-  {{/data}}
-  </ul>
+          </a>
+        </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
+    {{/data}}
+    </ul>
+  </div>
   </script>
 
 </head>
@@ -352,6 +338,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         $('#search-input').bind('keyup', function (e) {
           if(e.which == 13) {
               controller.go("8");
+
           }
 
           e.preventDefault();
@@ -364,8 +351,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           // ------ROUTER
           $(document).bind( "pagebeforechange", function( e, data ) {
 
-            $("body").removeClass("ui-overlay-c");
-            
             if ( typeof data.toPage === "string" ) {
 
               //Parse url
@@ -402,8 +387,9 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
               
           });
 
-          $("#notification_submit").submit(function(e){
+          $("#notification_form").submit(function(e){
              backend.notifications.add(formatFormData($(this).serializeArray())); 
+             e.preventDefault();
           });
 
           //1 broser
@@ -435,9 +421,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
         $(function(){
          
-          app_init();
-
-          
+          app_init();      
 
         });
 
@@ -539,7 +523,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     </div>
     
           <div id="page8-content"></div>
-          <form action="">
+          
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
                       <label for="search-input">
@@ -548,7 +532,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
                       value="" type="search">
                   </fieldset>
               </div>
-          </form>
+          
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -702,9 +686,10 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           <h3>
               Notifications
           </h3>
-          <div data-role="collapsible-set" data-content-theme="d" id="page5-content">
-              <!-- Info -->
+          <div id="page5-content">
+            <!-- Info -->
           </div>
+          
       </div>
       <div data-role="tabbar" data-iconpos="top" data-theme="a">
           <ul>
@@ -843,6 +828,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       </div>
   </div>
 
+<!-- Create Notification -->
   <div data-role="page" id="page9">
      <div data-theme="a" data-role="header">
           <h3>
@@ -931,8 +917,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   ?>
       
       <div id="login-box">
-        <h1>BooksChange</h1>
-        <h2>New way to share and get books and magazines</h2>
+        <h2>BooksChange</h2>
+        <h4>New way to share and get books and magazines</h4>
         <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
         <button class="install-app">Install App</button>
       </div>

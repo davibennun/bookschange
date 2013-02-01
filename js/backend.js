@@ -11,12 +11,12 @@ var backend = (function($){
           var urls = {
             "recommendations": "/backend/items/recommendations/{1}",
             "items":"/backend/items/{1}",
-            "itemsSearch": "/backend/items/search/{1}",
+            "itemsSearch": "/bookschange/shielded-sierra-1174/backend/items/search/{1}",
             "itemsAdd":"/backend/items/",
             "itemsUpdate":"/backend/items/{1}",
             "itemsDelte":"/backend/items/{1}",
             "notifications":"/backend/notifications/",
-            "notificationsAdd":"/backend/notifications/",
+            "notificationsAdd":"/bookschange/shielded-sierra-1174/backend/notifications/",
             "notificationsUpdate":"/backend/notifications/{1}",
             "notificationsDelete":"/backend/notifications/{1}"
           };
@@ -69,7 +69,7 @@ var backend = (function($){
                 },this).error(function(){console.log("Unable to reach backend")});
               },
 
-              search:function(query){
+              search:function(query,callback){
                 query = query.toLocaleLowerCase();
                 var results = [];
                 var url = urls.itemsSearch.replace("{1}",query);
@@ -77,8 +77,12 @@ var backend = (function($){
                 $.ajax({
                     type: 'GET',
                     url: url,
-                    async:false,
-                    complete: function (xhr, status) { this.results.push(JSON.parse(xhr.responseText)); },
+                    complete: function (xhr, status) {
+                     
+                     console.log(JSON.parse(xhr.responseText));
+                     callback.call(null, JSON.parse(xhr.responseText)); 
+
+                     },//console.log(xhr); },//this.results.push(JSON.parse(xhr.responseText)); },
                     error: function(jqXHR, textStatus, errorThrown){
                         console.log("Unable to reach backend");
                     }
@@ -199,8 +203,10 @@ var backend = (function($){
               },
 
               add: function(notification){
-                $.post(urls.notificationAdd,notification,function(data){
+                var url = urls.notificationsAdd;
+                $.post(url ,notification,function(data){
                     notifications.push(notification);
+                    $.dynamic_popup('Notification added.');
                 }).error(function(){console.log("Unable to reach backend")});
 
 

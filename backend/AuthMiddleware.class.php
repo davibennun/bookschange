@@ -16,8 +16,12 @@ class AuthMiddleware extends \Slim\Middleware
         	if(!empty($keys)){
         		
         		$data = json_decode($keys[0]);
-		        //process and get facebook id
-		        $app->fb_id = $data->fb_id || "123456";		
+                if($data){
+    		        //process and get facebook id
+    		        $app->fb_id = $data->fb_id || "123456";		
+                }else{
+                    $app->fb_id = "123456";
+                }
         	}
 	        
         }
