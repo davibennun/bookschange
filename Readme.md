@@ -20,6 +20,12 @@ Recursos futuros
 
 
 Uso real
-----------
+--------
 
 Esse aplicativo tem um uso prático e real, e pode ser usado para economizar e estreitar a relação entre as pessoas e livros, uma simples pesquisa por `doando livros` no twitter mostra a quantidade de pessoas que usariam para este seviço.
+
+
+
+Live site
+---------
+http://shielded-sierra-1174.herokuapp.com
