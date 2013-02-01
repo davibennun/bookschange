@@ -56,7 +56,7 @@ try{
 $user_id = $facebook->getUser();
 var_dump($user_id);
 if($_GET['state']){
-  header("Location: ".$_SERVER['HTTP_HOST']);
+  header('Location: '.$_SERVER['PHP_SELF']);
 }
 
 if ($user_id) {
