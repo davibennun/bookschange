@@ -188,7 +188,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     background-repeat:repeat-y;
     background-position:center center;
     background-attachment:scroll;
-    background-size:100% 100%;
+    background-size:cover;
 }
 .ui-page {
     background: transparent;
