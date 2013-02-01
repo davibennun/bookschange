@@ -8,18 +8,34 @@ var backend = (function($){
 
           var limit = 15;
 
-          var urls = {
-            "recommendations": "/backend/items/recommendations/{1}",
-            "items":"/backend/items/{1}",
-            "itemsSearch": "/bookschange/shielded-sierra-1174/backend/items/search/{1}",
-            "itemsAdd":"/backend/items/",
-            "itemsUpdate":"/backend/items/{1}",
-            "itemsDelte":"/backend/items/{1}",
-            "notifications":"/backend/notifications/",
-            "notificationsAdd":"/bookschange/shielded-sierra-1174/backend/notifications/",
-            "notificationsUpdate":"/backend/notifications/{1}",
-            "notificationsDelete":"/backend/notifications/{1}"
-          };
+          if(window.location.hostname.indexOf("localhost")){
+            var urls = {
+              "recommendations": "/backend/items/recommendations/{1}",
+              "items":"/backend/items/{1}",
+              "itemsSearch": "/bookschange/shielded-sierra-1174/backend/items/search/{1}",
+              "itemsAdd":"/backend/items/",
+              "itemsUpdate":"/backend/items/{1}",
+              "itemsDelte":"/backend/items/{1}",
+              "notifications":"/backend/notifications/",
+              "notificationsAdd":"/bookschange/shielded-sierra-1174/backend/notifications/",
+              "notificationsUpdate":"/backend/notifications/{1}",
+              "notificationsDelete":"/backend/notifications/{1}"
+            };
+          }else{
+            var urls = {
+              "recommendations": "/backend/items/recommendations/{1}",
+              "items":"/backend/items/{1}",
+              "itemsSearch": "/backend/items/search/{1}",
+              "itemsAdd":"/backend/items/",
+              "itemsUpdate":"/backend/items/{1}",
+              "itemsDelte":"/backend/items/{1}",
+              "notifications":"/backend/notifications/",
+              "notificationsAdd":"/backend/notifications/",
+              "notificationsUpdate":"/backend/notifications/{1}",
+              "notificationsDelete":"/backend/notifications/{1}"
+            };
+          }
+          
 
           var collections = {
 
