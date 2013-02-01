@@ -41,7 +41,7 @@ if(getenv("APP_STAGE") == "production"){
  ****************************************************************************/
 
 require_once('sdk/src/facebook.php');
-var_dump($_GET);
+
 try{
   $facebook = new Facebook(array(
     'appId'  => AppInfo::appID(),
@@ -54,7 +54,7 @@ try{
 }
 
 $user_id = $facebook->getUser();
-var_dump($user_id);
+
 if($_GET['state']){
   header('Location: '.$_SERVER['PHP_SELF']);
 }
