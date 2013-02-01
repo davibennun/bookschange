@@ -916,11 +916,21 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   ?>
       
-      <div id="login-box">
+      <!-- <div id="login-box">
         <h2>BooksChange</h2>
         <h4>New way to share and get books and magazines</h4>
         <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
         <button class="install-app">Install App</button>
+      </div> -->
+
+      <div data-role="page" data-url="/" tabindex="0" class="ui-page ui-body-c ui-page-active" style="min-height: 354px;">
+        <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe scrolling="no" frameborder="0" name="fb_xdm_frame_http" allowtransparency="true" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: medium none;" src="http://static.ak.facebook.com/connect/xd_arbiter.php?version=18#channel=fb14342b217dde&amp;origin=http%3A%2F%2Fshielded-sierra-1174.herokuapp.com&amp;channel_path=%2Fchannel.html%3Ffb_xd_fragment%23xd_sig%3Df2ed963183d314a%26"></iframe><iframe scrolling="no" frameborder="0" name="fb_xdm_frame_https" allowtransparency="true" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" style="border: medium none;" src="https://s-static.ak.facebook.com/connect/xd_arbiter.php?version=18#channel=fb14342b217dde&amp;origin=http%3A%2F%2Fshielded-sierra-1174.herokuapp.com&amp;channel_path=%2Fchannel.html%3Ffb_xd_fragment%23xd_sig%3Df2ed963183d314a%26"></iframe></div></div></div>
+            <div id="login-box">
+              <h1 style="text-align:center">BooksChange</h1>
+              <strong style="display:block">New way to share and get books and magazines</strong>
+              <a href="https://www.facebook.com/dialog/oauth?client_id=520832731271295&amp;redirect_uri=http%3A%2F%2Fshielded-sierra-1174.herokuapp.com%2F&amp;state=d487d26095b3455449729a513fcfcfc3&amp;scope=user_likes%2C+user_photos%2C+publish_actions" class="ui-link">Sign in with Facebook</a>
+              <div data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-icon="" data-iconpos="" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Install App</span></span><button class="install-app ui-btn-hidden" aria-disabled="false">Install App</button></div>
+            </div>
       </div>
 
     <?php } ?>
