@@ -48,6 +48,7 @@ try{
     'secret' => AppInfo::appSecret(),
     'sharedSession' => true,
     'trustForwarded' => true,
+    'cookie'=>true
   ));
 }catch(Exception $e){
   var_dump($e);
