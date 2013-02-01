@@ -76,14 +76,14 @@ $app->get('/items/:id', function($id) use($app, $mongo){
 
 $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
 	$mongo->setCollection("usuarios");
-	$user = $mongo->find(array("fb_id"=>$app->fb_id));
+	//$user = $mongo->find(array("fb_id"=>$app->fb_id));
 
 
 	
 	$mongo->setColection("items");
 	
 	//Get in genres collection what we have in user genres
-	$crietria = array("genre"=>array("$in"=>$user['genre']));
+	//$crietria = array("genre"=>array("$in"=>$user['genre']));
 
 	$result = $mongo->get($criteria ,$limit);
 
