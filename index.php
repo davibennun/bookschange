@@ -424,7 +424,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         $(function(){
          
 
-          if(window.location.href.indeOf("?state="))
+          if(window.location.href.indexOf("?state="))
             window.location.href = window.location.hostname;
 
           app_init();      
