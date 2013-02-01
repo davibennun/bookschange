@@ -41,7 +41,7 @@ if(getenv("APP_STAGE") == "production"){
  ****************************************************************************/
 
 require_once('sdk/src/facebook.php');
-
+var_dump($_GET);
 try{
   $facebook = new Facebook(array(
     'appId'  => AppInfo::appID(),
@@ -54,6 +54,11 @@ try{
 }
 
 $user_id = $facebook->getUser();
+var_dump($user_id);
+if($_GET['state']){
+  header("Location: ".$_SERVER['HTTP_HOST']);
+}
+
 if ($user_id) {
   try {
     // Fetch the viewer's basic information
@@ -131,7 +136,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   $user = $mongo->get(array("fb_id"=>$user_id));
 
   isset($user[0]) ? $user = $user[0] : "";
-  
+
   $mongo->setCollection("items");
 
   isset($user['genres']) ? $recommendations = $mongo->get(array("genre"=>array('$in'=>$user['genres'])),10) : $recommendations = array();
@@ -480,7 +485,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           </h3>
           <div id="page1-content">
           </div>
-          <a href="#popupBasic" data-rel="popup">Open Popup</a>
 
 
 <div data-role="popup" id="popupMenu" data-theme="a" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin" data-dismissible="true">
@@ -500,7 +504,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     </div>
     
           <div id="page8-content"></div>
-          <button class="install-app">Install App</button>
           <form action="">
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
