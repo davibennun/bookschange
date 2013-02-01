@@ -930,7 +930,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
     $params = array(
       'scope' => 'user_likes, user_photos, publish_actions',
-      //'redirect_uri' => $_SERVER['HTTP_HOST']
+      'redirect_uri' => $_SERVER['HTTP_HOST']."/login.php"
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
