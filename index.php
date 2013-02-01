@@ -183,21 +183,19 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   <style type="text/css">
 
-    html{
-      /* This image will be displayed fullscreen */
-      background:url('images/fundo_inicio.jpg') no-repeat center center;
-
-      /* Ensure the html element always takes up the full height of the browser window */
-      min-height:100%;
-
-      /* The Magic */
-      background-size:cover;
-    }
-
-    body{
-      /* Workaround for some mobile browsers */
-      min-height:100%;
-    }
+    body {
+    background: url("images/fundo_inicio.jpg");
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:100% 100%;
+}
+.ui-page {
+    background: transparent;
+}
+.ui-content{
+    background: transparent;
+}
 
     .ui-popup-container {
       z-index: 1100;
