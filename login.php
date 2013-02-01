@@ -17,6 +17,7 @@ try{
 
 }catch(Exception $e){
   var_dump($e);
+  echo "Erro init: $e";
   return;
 }
 
@@ -24,6 +25,7 @@ try{
 	$user_id = $facebook->getUser();
 }catch(Exception $e){
 	var_dump($e);
+	echo "Erro no getUser: $e";
 	return;
 }
 
