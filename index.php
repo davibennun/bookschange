@@ -194,7 +194,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         width:250px;
         height:18em;
         margin-top: -9em; /*set to a negative number 1/2 of your height*/
-        margin-left: -125px; /*set to a negative number 1/2 of your width*/
+        /*margin-left: -125px; /*set to a negative number 1/2 of your width*/
+        margin: auto;
         background-image: url("http://css-tricks.com/examples/TranspFills/images/transpBlack50.png");
         text-align: center;
         color:white;
