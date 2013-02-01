@@ -116,7 +116,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   $mongo->setCollection("items");
 
-  isset($user['genres']) ? $recommendations = $mongo->get(array("genre"=>array('$in'=>$user['genres'])),10) : $recommendations = array();
+  $citeria = array("genre"=>array('$in'=>$user['genres']);
+  isset($user['genres']) ? $recommendations = $mongo->get(array(),10) : $recommendations = array();
 
   //Fetch notifications
   //Fetch recommendations
