@@ -934,6 +934,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
+    echo $loginUrl;
 
   ?>
       

@@ -18,7 +18,7 @@ try{
   var_dump($e);
 }
 try{
-$user_id = $facebook->getUser();
+	$user_id = $facebook->getUser();
 }catch(Exception $e){
 	var_dump($e);
 }
