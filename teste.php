@@ -10,9 +10,6 @@ require_once('sdk/src/facebook.php');
 $facebook = new Facebook(array(
     'appId'  => AppInfo::appID(),
     'secret' => AppInfo::appSecret(),
-    'sharedSession' => true,
-    'trustForwarded' => true,
-    'cookie' => true
 ));
 
 $user_id = $facebook->getUser();
