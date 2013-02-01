@@ -15,5 +15,6 @@ try{
 }
 
 $user_id = $facebook->getUser();
+var_dump($user_id);
 
-header("Location: http://".$_SERVER['HTTP_HOST']);
+//header("Location: http://".$_SERVER['HTTP_HOST']);
