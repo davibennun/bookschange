@@ -56,7 +56,6 @@ try{
 
 $user_id = $facebook->getUser();
 
-var_dump($user_id);
 
 $mongo = new \MongoWrapper\MongoWrapper();
 $mongo->setDatabase("bookschange");
