@@ -1,6 +1,11 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 require_once('AppInfo.php');
+
+require_once('sdk/src/facebook.php');
 
 try{
   $facebook = new Facebook(array(
