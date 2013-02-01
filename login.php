@@ -1,8 +1,6 @@
 <?php
 
-session_start();
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+rueini_set("display_errors", 1);
 
 require_once('AppInfo.php');
 
@@ -12,16 +10,21 @@ try{
   $facebook = new Facebook(array(
     'appId'  => AppInfo::appID(),
     'secret' => AppInfo::appSecret(),
-    //'sharedSession' => true,
-    //'trustForwarded' => true
+    'sharedSession' => true,
+    'trustForwarded' => true,
+    'cookie' => true
   ));
+
 }catch(Exception $e){
   var_dump($e);
+  return;
 }
+
 try{
 	$user_id = $facebook->getUser();
 }catch(Exception $e){
 	var_dump($e);
+	return;
 }
 
 var_dump($user_id);

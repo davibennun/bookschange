@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-session_start();
 
 
 
@@ -100,8 +99,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   $user_id = "123456";
 
   $logoutUrl = "#";
-  
-
+  echo "NOT in production";
+  return;
 }
 
 
@@ -161,34 +160,34 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   <style type="text/css">
 
-    body {
-    background: url("images/fundo_inicio.jpg");
-    background-repeat:repeat-y;
-    background-position:center center;
-    background-attachment:scroll;
-    background-size:cover;
-}
-.ui-page {
-    background: transparent;
-}
-.ui-content{
-    background: transparent;
-}
+      body {
+      background: url("images/fundo_inicio.jpg");
+      background-repeat:repeat-y;
+      background-position:center center;
+      background-attachment:scroll;
+      background-size:cover;
+      }
+      .ui-page {
+      background: transparent;
+      }
+      .ui-content{
+      background: transparent;
+      }
 
-    .ui-popup-container {
+      .ui-popup-container {
       z-index: 1100;
       display: inline-block;
       position: absolute;
       padding: 0;
       outline: 0;
-    }
+      }
 
-    .ui-popup-hidden {
+      .ui-popup-hidden {
       top: -99999px;
       left: -9999px;
-    }
+      }
 
-    #login-box{
+      #login-box{
       position:fixed;
       top: 50%;
       left: 50%;
@@ -201,7 +200,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       color:white;
       border-radius:10px;
       padding:15px;
-    }
+      }
 
   </style>
 
@@ -246,18 +245,18 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   </script>
 
   <script type="text/html" id="template-notificationsList">
-  <div data-role="collapsible-set" data-content-theme="d" id="page5-content">
+    <div data-role="collapsible-set" data-content-theme="d" id="page5-content">
 
-    <ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-    {{#data}}
-        <li data-theme="c" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">
-          <a data-transition="slide" class="ui-link-inherit">
-            {{title}}
-          </a>
-        </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
-    {{/data}}
-    </ul>
-  </div>
+      <ul data-role="listview" data-divider-theme="b" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+      {{#data}}
+          <li data-theme="c" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">
+            <a data-transition="slide" class="ui-link-inherit">
+              {{title}}
+            </a>
+          </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
+      {{/data}}
+      </ul>
+    </div>
   </script>
 
 </head>
@@ -931,7 +930,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
     $params = array(
       'scope' => 'user_likes, user_photos, publish_actions',
-      'redirect_uri' => "http://".$_SERVER['HTTP_HOST']."/index.php"
+      'redirect_uri' => "http://".$_SERVER['HTTP_HOST']."/login.php"
     );
 
     $loginUrl = $facebook->getLoginUrl($params);
