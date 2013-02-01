@@ -80,7 +80,7 @@ $app->get('/items/recommendations/:limit', function($limit) use($app, $mongo){
 
 
 	
-	$mongo->setColection("items");
+	$mongo->setCollection("items");
 	
 	//Get in genres collection what we have in user genres
 	//$crietria = array("genre"=>array("$in"=>$user['genre']));
