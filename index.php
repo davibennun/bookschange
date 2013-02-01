@@ -158,11 +158,14 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <style type="text/css">
 
       body {
-      background: url("images/fundo_inicio.jpg");
-      background-repeat:repeat-y;
-      background-position:center center;
-      background-attachment:scroll;
-      background-size:cover;
+        background-image: url("images/wood_pattern.png");
+        background-repeat:repeat-x repeat-y;
+    
+        /*background: url("images/fundo_inicio.jpg");
+        background-repeat:repeat-y;
+        background-position:center center;
+        background-attachment:scroll;
+        background-size:cover;*/
       }
       .ui-page {
       background: transparent;
@@ -295,7 +298,13 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         var app_init = function(){
 
           $("div[data-role='page']").css({"background-image":"url(images/wood_pattern.png)","background-repeat":"repeat-y repeat-x"});
-          $("#login-box").parent().css({"background-color":"","background-image":""});
+          $("#login-box").parent().css({
+            "background":"url(images/fundo_inicio.jpg)",
+            "background-position":"center center" ,
+            "background-attachment":"scroll",
+            "background-size":"cover"
+          });
+          
 
           //todo o controler tem que iniciar
 
