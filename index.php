@@ -195,6 +195,18 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       left: -9999px;
     }
 
+    #login-box{
+      position:fixed;
+      top: 50%;
+      left: 50%;
+      width:30em;
+      height:18em;
+      margin-top: -9em; /*set to a negative number 1/2 of your height*/
+      margin-left: -15em; /*set to a negative number 1/2 of your width*/
+      border: 1px solid #ccc;
+      background-color: #f3f3f3;
+    }
+
   </style>
 
   <script type="text/javascript">
@@ -477,8 +489,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           <h3>
               Books change
           </h3>
-
-
       
       </div>
       <div data-role="content">
@@ -897,7 +907,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   ?>
       
-      <div>
+      <div id="login-box">
         <h1>Sign in with facebook</h1>
         <a href="<?php echo $loginUrl; ?>">Entrar com Facebook</a>
         <button class="install-app">Install App</button>
