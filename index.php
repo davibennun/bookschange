@@ -314,9 +314,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           // });  
 
           $(".install-app").click(function(e){
-            console.log("test");
-            
-
 
             mozilla = "http://"+window.location.hostname + '/manifest.webapp';
             console.log(mozilla);
@@ -533,7 +530,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
                   <fieldset data-role="controlgroup">
                       <label for="search-input">
                       </label>
-                      <input name="" id="search-input" placeholder="Search by title or genre"
+                      <input name="" id="search-input" placeholder="Search by title, genre or author"
                       value="" type="search">
                   </fieldset>
               </div>
@@ -763,6 +760,14 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
               </div>
               <div data-role="fieldcontain">
                   <fieldset data-role="controlgroup">
+                      <label for="textinput4">
+                          Author
+                      </label>
+                      <input name="genre" id="textinput4" placeholder="" value="" type="text">
+                  </fieldset>
+              </div>
+              <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup">
                       <label for="textarea1">
                           Description
                       </label>
@@ -875,7 +880,15 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
                       <input name="genre" id="textinput4" placeholder="" value="" type="text">
                   </fieldset>
               </div>
-              
+              <div data-role="fieldcontain">
+                  <fieldset data-role="controlgroup">
+                      <label for="textinput4">
+                          Author
+                      </label>
+                      <input name="genre" id="textinput4" placeholder="" value="" type="text">
+                  </fieldset>
+              </div>
+
               <input id="notification_submit" type="submit" value="Submit">
           </form>
       </div>
