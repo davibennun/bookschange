@@ -304,7 +304,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         var app_init = function(){
 
           $("div[data-role='page']").css({"background-image":"url(images/wood_pattern.png)","background-repeat":"repeat-y repeat-x"});
-          $("#login-box").parent().css("background-color","");
+          $("#login-box").parent().css({"background-color":"","background-image":""});
 
           //todo o controler tem que iniciar
 
@@ -923,7 +923,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       
       <div id="login-box">
         <h2 styles="text-shadow: 0 1px 0 #333;">BooksChange</h2>
-        <strong style="display:block;text-shadow: 0 1px 0 #333;">New way to share and get books and magazines</strong>
+        <strong style="display:block;text-shadow: 0 1px 0 #333;margin-bottom: 40px;">New way to share and get books and magazines</strong>
         <ul data-role="listview" data-divider-theme="b" data-inset="true">
             <li data-theme="b">
                 <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
