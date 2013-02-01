@@ -85,7 +85,7 @@ if ($user_id) {
   $user_data = $mongo->get(array("fb_id"=>$user_id));
 
   if(empty($user_data)){
-    die("First time user");
+    //die("First time user");
   }
 
 }
