@@ -425,8 +425,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
          
 
           if(window.location.href.indexOf("?state=")>=0){
-            var re = /^https?:\/\/[^/]+/i;
-            window.location.href = re.exec(window.location.href)[0];
+            //var re = /^https?:\/\/[^/]+/i;
+            //window.location.href = re.exec(window.location.href)[0];
           }
             
 
