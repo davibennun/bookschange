@@ -425,7 +425,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
          
 
           if(window.location.href.indexOf("?state="))
-            window.location.href = window.location.hostname;
+            window.location = window.location.hostname;
 
           app_init();      
 
@@ -500,7 +500,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     Actions
   </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
-              Books change
+              BooksChange
           </h3>
       
       </div>
