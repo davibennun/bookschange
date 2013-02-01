@@ -4,6 +4,7 @@
 <?php
 
 require_once('AppInfo.php');
+require_once('utils.php');
 require_once('sdk/src/facebook.php');
 
 $facebook = new Facebook(array(
