@@ -87,5 +87,6 @@ Controller.prototype.go = function(page_id){
     Array.prototype.push.apply( args, arguments );
     args.shift();
     
-	this.pages[page_id].apply(null,args);
+    this.pages[page_id] ? this.pages[page_id].apply(null, args) : "";
+
 }

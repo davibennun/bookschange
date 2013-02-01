@@ -101,12 +101,14 @@ $app_info = $facebook->api('/'. AppInfo::appID());
 
 $app_name = idx($app_info, 'name', '');
 
+$logoutUrl = $facebook->getLogoutUrl();
+
 }else{
 
   $basic = array();
   $user_id = "123456";
 
-  
+  $logoutUrl = "#";
   
 
 }
@@ -133,6 +135,7 @@ $app_name = idx($app_info, 'name', '');
   $mongo->setCollection("notifications");
   $notifications = $mongo->get(array("fb_id"=>$user_id));
 
+  
 
 ?><!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
@@ -443,13 +446,27 @@ $app_name = idx($app_info, 'name', '');
 
   <?php if (isset($basic)) { ?>
 
+
+
+
   <!-- Home -->
   <div data-role="page" id="page1">
+
+
+
       <div data-theme="a" data-role="header">
+        
+  <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books change
           </h3>
-          <a data-inline="true" data-role="button" data-rel="popup" href="#popupMenu" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" aria-haspopup="true" aria-owns="#overlay" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Overlay theme A</span></span></a>
+
+
+      
       </div>
       <div data-role="content">
           <h3>
@@ -459,16 +476,23 @@ $app_name = idx($app_info, 'name', '');
           </div>
           <a href="#popupBasic" data-rel="popup">Open Popup</a>
 
-<div data-role="popup" id="popupMenu">
-  <div data-theme="a" id="popupMenu" data-role="popup" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin">
-          <ul data-theme="b" style="min-width:210px;" data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
-            <li data-theme="a" data-role="divider" class="ui-li ui-li-static ui-btn-up-a ui-corner-top">Popup API</li>
-            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="options.html" class="ui-link-inherit">Options</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
-            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-b"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="methods.html" class="ui-link-inherit">Methods</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
-            <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="b" class="ui-btn ui-btn-up-b ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-bottom ui-li-last"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="events.html" class="ui-link-inherit">Events</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>
-          </ul>
-      </div>
-</div>
+
+<div data-role="popup" id="popupMenu" data-theme="a" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin" data-dismissible="true">
+        <ul data-role="listview" data-theme="b" data-inset="true" data-cid="listview5" class="codiqa-control ui-listview ui-listview-inset ui-corner-all ui-shadow">
+    
+      
+        <li data-role="divider" data-theme="a" class="ui-li ui-li-static ui-btn-up-a ui-first-child">Actions</li>
+          <li data-theme="b" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-top ui-corner-bottom ui-li-last ui-btn-up-b">
+            <div class="ui-btn-inner ui-li ui-corner-top">
+              <div class="ui-btn-text">
+                <a href="<?php echo $logoutUrl; ?>" data-transition="slide" class="ui-link-inherit">Logout</a>
+              </div>
+              <span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span>
+            </div>
+          </li>
+  </ul>
+    </div>
+    
           <div id="page8-content"></div>
           <button class="install-app">Install App</button>
           <form action="">
@@ -506,6 +530,12 @@ $app_name = idx($app_info, 'name', '');
               </li>
           </ul>
       </div>
+
+
+
+    
+
+
   </div>
   <!-- details -->
   <div data-role="page" id="page2">
@@ -844,9 +874,6 @@ $app_name = idx($app_info, 'name', '');
 
  
 
-<div id="both" data-role="popup" data-theme="e" data-overlay-theme="a" class="ui-content">
-  ...Popup contents...
-</div>
 
    <?php } else { 
 
