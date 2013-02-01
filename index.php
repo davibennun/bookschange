@@ -101,7 +101,7 @@ $app_info = $facebook->api('/'. AppInfo::appID());
 
 $app_name = idx($app_info, 'name', '');
 
-$logoutUrl = $facebook->getLogoutUrl(array( 'next' => ($_SERVER['HTTP_HOST'].'logout.php') ));
+$logoutUrl = $facebook->getLogoutUrl(array( 'next' => ($_SERVER['HTTP_HOST'].'/logout.php') ));
 
 }else{
 
