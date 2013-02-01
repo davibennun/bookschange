@@ -129,7 +129,9 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   //Fetch recommendations
   $mongo->setCollection("usuarios");
   $user = $mongo->get(array("fb_id"=>$user_id));
-  $user = $user[0];
+
+  isset($user[0]) ? $user = $user[0] : "";
+  
   $mongo->setCollection("items");
 
   isset($user['genres']) ? $recommendations = $mongo->get(array("genre"=>array('$in'=>$user['genres'])),10) : $recommendations = array();
