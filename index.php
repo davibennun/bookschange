@@ -508,21 +508,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           </div>
 
 
-<div data-role="popup" id="popupMenu" data-theme="a" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin" data-dismissible="true">
-        <ul data-role="listview" data-theme="b" data-inset="true" data-cid="listview5" class="codiqa-control ui-listview ui-listview-inset ui-corner-all ui-shadow">
-    
-      
-        <li data-role="divider" data-theme="a" class="ui-li ui-li-static ui-btn-up-a ui-first-child">Actions</li>
-          <li data-theme="b" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-top ui-corner-bottom ui-li-last ui-btn-up-b">
-            <div class="ui-btn-inner ui-li ui-corner-top">
-              <div class="ui-btn-text">
-                <a href="<?php echo $logoutUrl; ?>" data-transition="slide" class="ui-link-inherit">Logout</a>
-              </div>
-              <span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span>
-            </div>
-          </li>
-  </ul>
-    </div>
+
     
           <div id="page8-content"></div>
           
@@ -948,6 +934,21 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
     </div>
   </div>
 
+<div data-role="popup" id="popupMenu" data-theme="a" class="ui-popup ui-body-a ui-overlay-shadow ui-corner-all" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin" data-dismissible="true">
+        <ul data-role="listview" data-theme="b" data-inset="true" data-cid="listview5" class="codiqa-control ui-listview ui-listview-inset ui-corner-all ui-shadow">
+    
+      
+        <li data-role="divider" data-theme="a" class="ui-li ui-li-static ui-btn-up-a ui-first-child">Actions</li>
+          <li data-theme="b" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-top ui-corner-bottom ui-li-last ui-btn-up-b">
+            <div class="ui-btn-inner ui-li ui-corner-top">
+              <div class="ui-btn-text">
+                <a href="<?php echo $logoutUrl; ?>" data-transition="slide" class="ui-link-inherit">Logout</a>
+              </div>
+              <span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span>
+            </div>
+          </li>
+  </ul>
+    </div>
 
  
 
