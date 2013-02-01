@@ -273,7 +273,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   </script>
 
 </head>
-<body>
+<body style='background: url("images/fundo_inicio.jpg");
+    background-repeat:repeat-y;
+    background-position:center center;
+    background-attachment:scroll;
+    background-size:cover;'>
   <div id="fb-root"></div>
   <script type="text/javascript">
       window.fbAsyncInit = function() {
@@ -307,6 +311,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       }
 
         var app_init = function(){
+
+          $("div[data-role='page']").css("background-color","#eee");
 
           //todo o controler tem que iniciar
 
@@ -357,6 +363,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           // ------ROUTER
           $(document).bind( "pagebeforechange", function( e, data ) {
 
+            $("body").removeClass("ui-overlay-c");
             
             if ( typeof data.toPage === "string" ) {
 
