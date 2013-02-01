@@ -10,7 +10,7 @@ O app e dependente do Facebook, e utiliza o conceito de Open Graph para divulgar
 
 
 Recursos futuros
-==============
+-----------------
 
 - Agrupamento de usuários pela língua
 - Possibilidade de pesquisar por livros e revistas perto da area onde o usuário está
@@ -20,8 +20,6 @@ Recursos futuros
 
 
 Uso real
-========
+----------
 
-Esse aplicativo tem um uso prático e real, e pode ser usado para economizar e estreitar a relação entre as pessoas e livros, uma simples pesquisa por `doando livros` no twitter mostra a quantidade de pessoas potenciais para este seviço.
-
-This is a sample app showing use of the Facebook Graph API, written in PHP, designed for deployment to [Heroku](http://www.heroku.com/).
+Esse aplicativo tem um uso prático e real, e pode ser usado para economizar e estreitar a relação entre as pessoas e livros, uma simples pesquisa por `doando livros` no twitter mostra a quantidade de pessoas que usariam para este seviço.
