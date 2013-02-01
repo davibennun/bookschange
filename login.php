@@ -11,8 +11,8 @@ try{
   $facebook = new Facebook(array(
     'appId'  => AppInfo::appID(),
     'secret' => AppInfo::appSecret(),
-    'sharedSession' => true,
-    'trustForwarded' => true
+    //'sharedSession' => true,
+    //'trustForwarded' => true
   ));
 }catch(Exception $e){
   var_dump($e);
