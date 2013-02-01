@@ -61,6 +61,9 @@ if(isset($_GET['state'])){
 
 }
 
+$mongo = new \MongoWrapper\MongoWrapper();
+$mongo->setDatabase("bookschange");
+
 if ($user_id) {
   try {
     // Fetch the viewer's basic information
@@ -107,8 +110,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
 
 //Fetch items
-  $mongo = new \MongoWrapper\MongoWrapper();
-  $mongo->setDatabase("bookschange");
+  
   $mongo->setCollection("items");
   $items = $mongo->get(array("fb_id"=>$user_id),10);
   
@@ -197,8 +199,10 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       height:18em;
       margin-top: -9em; /*set to a negative number 1/2 of your height*/
       margin-left: -15em; /*set to a negative number 1/2 of your width*/
-      border: 1px solid #ccc;
       background-color: #f3f3f3;
+      text-align: center;
+      color:white;
+      border-radius:10px;
     }
 
   </style>
@@ -916,21 +920,14 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
   ?>
       
-      <!-- <div id="login-box">
+      <div id="login-box">
         <h2>BooksChange</h2>
-        <h4>New way to share and get books and magazines</h4>
-        
+        <strong>New way to share and get books and magazines</strong>
+        <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
         <button class="install-app">Install App</button>
-      </div> -->
-
-      <div data-role="page" data-url="/" tabindex="0" class="ui-page ui-body-c ui-page-active" style="min-height: 354px;">
-            <div id="login-box">
-              <h1 style="text-align:center">BooksChange</h1>
-              <strong style="display:block">New way to share and get books and magazines</strong>
-              <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
-              <div data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-icon="" data-iconpos="" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Install App</span></span><button class="install-app ui-btn-hidden" aria-disabled="false">Install App</button></div>
-            </div>
       </div>
+
+
 
     <?php } ?>
 
