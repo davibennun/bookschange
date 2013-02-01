@@ -571,7 +571,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page2">
       <div data-theme="a" data-role="header">
           <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
-          
+          <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           
           <h3>
               Books Change
@@ -610,6 +614,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page3">
       <div data-theme="a" data-role="header">
           <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+          <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books Change
           </h3>
@@ -673,6 +682,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page5">
       <div data-theme="a" data-role="header">
           <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+         <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books Change
           </h3>
@@ -719,6 +733,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page6">
       <div data-theme="a" data-role="header">
         <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+         <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books Change
           </h3>
@@ -804,6 +823,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page7">
       <div data-theme="a" data-role="header">
       <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+      <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books Change
           </h3>
@@ -841,6 +865,11 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   <div data-role="page" id="page9">
      <div data-theme="a" data-role="header">
         <a href="#" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-a" data-rel="back" data-icon="arrow-l" data-theme="a" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+          <a data-role="button" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right codiqa-control ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-active ui-btn-up-a" data-cid="button8" data-corners="true" data-shadow="true" data-iconshadow="true" data-iconsize="18" data-wrapperels="span" data-theme="a" title="
+    Actions
+  "><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+    Actions
+  </span><span class="ui-icon ui-icon-gear ui-icon-shadow ui-iconsize-18">&nbsp;</span></span></a>
           <h3>
               Books Change
           </h3>
