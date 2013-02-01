@@ -8,7 +8,7 @@ var backend = (function($){
 
           var limit = 15;
 
-          if(window.location.hostname.indexOf("localhost")){
+          if(window.location.hostname.indexOf("localhost") >= 0){
             var urls = {
               "recommendations": "/backend/items/recommendations/{1}",
               "items":"/backend/items/{1}",
