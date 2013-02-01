@@ -926,8 +926,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         <ul data-role="listview" data-divider-theme="b" data-inset="true">
             <li data-theme="b">
                 <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
-                    Sair
-                </a>
             </li>
         </ul>
         
