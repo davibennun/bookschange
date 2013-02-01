@@ -236,7 +236,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       </div>
       <div>
           <a href="" data-transition="slide">
-              <a href="http://facebook.com/{{fb_id}}">Contact owner</a>
+              <a href="http://facebook.com/{{fb_id}}" target="_blank">Go to owner facebook</a>
           </a>
       </div>
   </script>
@@ -511,7 +511,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
           </li>
   </ul>
     </div>
-  
+
           <h3>
               BooksChange
           </h3>
@@ -519,7 +519,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       </div>
       <div data-role="content">
           <h3>
-              Recomendations
+              Recommended for you
           </h3>
           <div id="page1-content">
           </div>
@@ -765,7 +765,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
                       <label for="textinput4">
                           Author
                       </label>
-                      <input name="genre" id="textinput4" placeholder="" value="" type="text">
+                      <input name="author" id="textinput4" placeholder="" value="" type="text">
                   </fieldset>
               </div>
               <div data-role="fieldcontain">
