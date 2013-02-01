@@ -55,7 +55,7 @@ try{
 
 $user_id = $facebook->getUser();
 
-if($_GET['state']){
+if(isset($_GET['state'])){
   //header('Location: '.$_SERVER['PHP_SELF']);
   echo "Logado";
 }
