@@ -195,7 +195,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       position:fixed;
       top: 50%;
       left: 50%;
-      width:30em;
+      width:15em;
       height:18em;
       margin-top: -9em; /*set to a negative number 1/2 of your height*/
       margin-left: -15em; /*set to a negative number 1/2 of your width*/
@@ -203,6 +203,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       text-align: center;
       color:white;
       border-radius:10px;
+      padding:15px;
     }
 
   </style>
@@ -921,8 +922,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   ?>
       
       <div id="login-box">
-        <h2>BooksChange</h2>
-        <strong style="display:block;">New way to share and get books and magazines</strong>
+        <h2 styles="text-shadow: 0 1px 0 #333;">BooksChange</h2>
+        <strong style="display:block;text-shadow: 0 1px 0 #333;">New way to share and get books and magazines</strong>
         <ul data-role="listview" data-divider-theme="b" data-inset="true">
             <li data-theme="b">
                 <a href="<?php echo $loginUrl; ?>">Sign in with Facebook</a>
