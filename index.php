@@ -2,8 +2,9 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+session_start();
 
-//8:30
+
 
 /**
  * This sample app is provided to kickstart your experience using Facebook's
