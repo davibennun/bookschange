@@ -313,7 +313,8 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         var app_init = function(){
 
           $("div[data-role='page']").css("background-color","#eee");
-
+          $("#login-box").parent().css("background-color","");
+          
           //todo o controler tem que iniciar
 
           var controller = new Controller("1");
