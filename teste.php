@@ -35,5 +35,7 @@ if (!$user_id) {
 	echo "Your user_id is: ".$user_id;
 }
 
+?>
+
 </body>
 </html>
