@@ -285,8 +285,6 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
 
       }
       
-      
-      
 
       var templates = {
         itemsList : Mustache.compile($("#template-itemsList").html()),
@@ -681,6 +679,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
               Books Change
           </h3>
       </div>
+      <h3>You can be notified when a book you like is available</h3>
       <div data-role="content">
           <a id="notifications_add" data-role="button" data-inline="true" data-transition="slide"
           href="#page9">
@@ -812,6 +811,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
               Books Change
           </h3>
       </div>
+      <h3>Items you`re donating</h3>
       <div data-role="content" id="page7-content">
           
       </div>
