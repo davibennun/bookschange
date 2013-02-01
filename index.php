@@ -217,7 +217,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
         {{#data}}
         <li data-theme="c" data-corners="false" data-shadow="false" data-iconshadow="true" data-iconsize="18" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text">
           <a href="#page2?item_id={{id}}" data-transition="slide" class="ui-link-inherit">
-            {{title}}
+            {{title}} - {{author}}
           </a>
         </div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow ui-iconsize-18">&nbsp;</span></div></li>
         
@@ -236,7 +236,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
       </div>
       <div>
           <a href="" data-transition="slide">
-              <a href="{{profile_link}}">Contact owner</a>
+              <a href="http://facebook.com/{{fb_id}}">Contact owner</a>
           </a>
       </div>
   </script>
