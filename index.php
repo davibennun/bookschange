@@ -42,12 +42,16 @@ if(getenv("APP_STAGE") == "production"){
 
 require_once('sdk/src/facebook.php');
 
-$facebook = new Facebook(array(
-  'appId'  => AppInfo::appID(),
-  'secret' => AppInfo::appSecret(),
-  'sharedSession' => true,
-  'trustForwarded' => true,
-));
+try{
+  $facebook = new Facebook(array(
+    'appId'  => AppInfo::appID(),
+    'secret' => AppInfo::appSecret(),
+    'sharedSession' => true,
+    'trustForwarded' => true,
+  ));
+}catch(Exception $e){
+  var_dump($e);
+}
 
 $user_id = $facebook->getUser();
 if ($user_id) {
@@ -101,7 +105,7 @@ $app_info = $facebook->api('/'. AppInfo::appID());
 
 $app_name = idx($app_info, 'name', '');
 
-$logoutUrl = $facebook->getLogoutUrl(array( 'next' => ($_SERVER['HTTP_HOST'].'/logout.php') ));
+$logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST'].'/logout.php') ));
 
 }else{
 
