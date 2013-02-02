@@ -4,13 +4,14 @@
   "description": "Donate and share books and magazines",
   "launch_path": "/",
   "icons": {
-    "16": "/img/icons/mortar-16.png",
-    "48": "/img/icons/mortar-48.png",
-    "128": "/img/icons/mortar-128.png"
+    "16": "/images/icons/books-16.png",
+    "16": "/images/icons/books-36.png",
+    "48": "/images/icons/books-48.png",
+    "128": "/images/icons/books-128.png"
   },
   "developer": {
     "name": "Davi Nunes",
-    "url": "http://yourawesomeapp.com"
+    "url": "http://www.bookschange.org"
   },
   "installs_allowed_from": ["*"]
 }
