@@ -261,11 +261,7 @@ $logoutUrl = $facebook->getLogoutUrl();//array( 'next' => ($_SERVER['HTTP_HOST']
   </script>
 
 </head>
-<body style='background: url("images/fundo_inicio.jpg");
-    background-repeat:repeat-y;
-    background-position:center center;
-    background-attachment:scroll;
-    background-size:cover;'>
+<body >
   <div id="fb-root"></div>
   <script type="text/javascript">
       window.fbAsyncInit = function() {
